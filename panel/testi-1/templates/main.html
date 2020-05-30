@@ -1,0 +1,168 @@
+<!-- Timer, optional div -->
+<div ng-if="main.quizConfig.settings.timerCount>0"
+     class="timer md-headline"
+     layout="row" layout-align="end center">
+    {{(main.timeLeft+1)*1000 | date:"mm:ss"}}
+</div>
+
+<div ng-class="['quiz-container', {'md-whiteframe-3dp':main.quizConfig.settings.whiteframe}]">
+
+    <!-- Main title, optional div -->
+    <div ng-if="main.mainTitle">
+        <md-toolbar layout-padding ng-if="main.quizConfig.settings.titleToolbar" class="title-toolbar">
+            <h1 class="md-display-1 main-title">{{main.mainTitle}}</h1>
+        </md-toolbar>
+        <h1 ng-if="!main.quizConfig.settings.titleToolbar"
+            class="md-display-1 main-title without-toolbar">{{main.mainTitle}}</h1>
+    </div>
+
+    <!-- Questions -->
+    <quiz-question></quiz-question>
+
+    <!-- Form -->
+    <div ng-if="main.quizConfig.database.showForm === 'last' && main.showLast()" class="page" layout-padding>
+        <form name="main.formData" novalidate>
+            <div layout="row">
+                <md-input-container flex ng-if="main.quizConfig.database.name">
+                    <label>{{main.quizConfig.labels.sendName}}</label>
+                    <input name="username" ng-model="main.quizDatabase.formName" required>
+
+                    <div ng-messages="main.formData.username.$error" ng-if="main.formData.submitted">
+                        <div ng-message="required">{{main.quizConfig.labels.requiredField}}</div>
+                    </div>
+
+                </md-input-container>
+
+                <md-input-container flex ng-if="main.quizConfig.database.email">
+                    <label>{{main.quizConfig.labels.sendEmail}}</label>
+                    <input name="email" ng-model="main.quizDatabase.formEmail" type="email" required>
+
+                    <div ng-messages="main.formData.email.$error" ng-if="main.formData.submitted">
+                        <div ng-message="required">{{main.quizConfig.labels.requiredField}}</div>
+                        <div ng-message="email">{{main.quizConfig.labels.emailError}}</div>
+                    </div>
+
+                </md-input-container>
+            </div>
+        </form>
+    </div>
+
+    <!-- Page number, optional div -->
+    <div ng-if="main.quizConfig.settings.showPageNumber" class="pagNumber md-headline"
+         layout="row" layout-align="end center">
+        {{main.currentPage}}/{{main.numPages}}
+    </div>
+
+    <!-- Progress bar, optional div-->
+    <md-progress-linear md-mode="determinate" ng-if="main.quizConfig.settings.showProgressBar"
+                        value="{{main.currentPage*100/main.numPages}}" class="progress-bar">
+    </md-progress-linear>
+
+
+    <!-- global alert -->
+    <div class="alert global" layout="row" layout-align="center center"
+         ng-if="main.showGlobalAlert() && main.continueAlert && main.quizConfig.settings.showGlobalAlert">
+        {{main.quizConfig.labels.requiredGlobalAlert}}
+    </div>
+
+    <!-- PAGE BUTTONS -->
+
+    <div ng-if="!main.quizConfig.settings.hidePageButtons">
+
+        <!-- Previous, next and submit buttons -->
+        <div ng-if="main.currentPage>1" layout="row" layout-align="space-between center" class="prev-next nav-buttons">
+
+            <md-button ng-click="main.prevPage()" ng-if="main.currentPage>1">
+                {{main.quizConfig.labels.previousText}}
+            </md-button>
+
+            <md-button ng-click="main.nextPage()" ng-if="main.showNext()">
+                {{main.quizConfig.labels.nextText}}
+            </md-button>
+
+            <md-button ng-click="main.checkAnswers()"
+                       ng-if="main.quizConfig.database.showForm!='last' && main.showLast() && main.quizConfig.database.sendFrom != 'lastPage'">
+                {{main.quizConfig.labels.lastText}}
+            </md-button>
+
+            <md-button ng-click="main.submit()"
+                       ng-if="main.quizConfig.database.showForm!='last' && main.showLast() && main.quizConfig.database.sendFrom === 'lastPage'">
+                {{main.quizConfig.labels.submitButton}}
+            </md-button>
+
+            <md-button ng-click="main.checkAnswersForm(main.formData)"
+                       ng-if="main.quizConfig.database.showForm==='last' && main.showLast() && main.quizConfig.database.sendFrom != 'lastPage'">
+                {{main.quizConfig.labels.lastText}}
+            </md-button>
+
+            <md-button ng-click="main.submitForm(main.formData)"
+                       ng-if="main.quizConfig.database.showForm==='last' && main.showLast() && main.quizConfig.database.sendFrom === 'lastPage'">
+                {{main.quizConfig.labels.submitButton}}
+            </md-button>
+
+        </div>
+
+        <!-- first page buttons-->
+        <div ng-if="main.currentPage<2 && main.numPages>1" layout="row" layout-align="end center"
+             class="prev-next nav-buttons">
+
+            <md-button ng-click="main.nextPage()" ng-if="main.showNext()">
+                {{main.quizConfig.labels.nextText}}
+            </md-button>
+
+            <md-button ng-click="main.checkAnswers()"
+                       ng-if="main.quizConfig.database.showForm!='last' && main.showLast() && main.quizConfig.database.sendFrom != 'lastPage'">
+                {{main.quizConfig.labels.lastText}}
+            </md-button>
+
+            <md-button ng-click="main.submit()"
+                       ng-if="main.quizConfig.database.showForm!='last' && main.showLast() && main.quizConfig.database.sendFrom === 'lastPage'">
+                {{main.quizConfig.labels.submitButton}}
+            </md-button>
+
+            <md-button ng-click="main.checkAnswersForm(main.formData)"
+                       ng-if="main.quizConfig.database.showForm==='last' && main.showLast() && main.quizConfig.database.sendFrom != 'lastPage'">
+                {{main.quizConfig.labels.lastText}}
+            </md-button>
+
+            <md-button ng-click="main.submitForm(main.formData)"
+                       ng-if="main.quizConfig.database.showForm==='last' && main.showLast() && main.quizConfig.database.sendFrom === 'lastPage'">
+                {{main.quizConfig.labels.submitButton}}
+            </md-button>
+
+        </div>
+
+        <!-- only one page buttons-->
+        <div ng-if="main.numPages===1" layout="row" layout-align="center center" class="prev-next nav-buttons">
+
+            <md-button ng-click="main.checkAnswers()"
+                       ng-if="main.quizConfig.database.showForm!='last' && main.showLast() && main.quizConfig.database.sendFrom != 'lastPage'">
+                {{main.quizConfig.labels.lastText}}
+            </md-button>
+
+            <md-button ng-click="main.submit()"
+                       ng-if="main.quizConfig.database.showForm!='last' && main.showLast() && main.quizConfig.database.sendFrom === 'lastPage'">
+                {{main.quizConfig.labels.submitButton}}
+            </md-button>
+
+            <md-button ng-click="main.checkAnswersForm(main.formData)"
+                       ng-if="main.quizConfig.database.showForm==='last' && main.showLast() && main.quizConfig.database.sendFrom != 'lastPage'">
+                {{main.quizConfig.labels.lastText}}
+            </md-button>
+
+            <md-button ng-click="main.submitForm(main.formData)"
+                       ng-if="main.quizConfig.database.showForm==='last' && main.showLast() && main.quizConfig.database.sendFrom === 'lastPage'">
+                {{main.quizConfig.labels.submitButton}}
+            </md-button>
+
+        </div>
+    </div>
+
+</div>
+
+
+<div class="loading-icon" layout="row" layout-align="center center"
+     ng-if="main.quizDatabase.sendingData">
+    <div class="spinner"></div>
+</div>
+

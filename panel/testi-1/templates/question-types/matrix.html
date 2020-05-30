@@ -1,0 +1,49 @@
+<table ng-class="['matrix', {'semitransparent': ctrl.quizMain.questionsData[ctrl.questionId].semitransparent}]">
+    <tr>
+        <th ng-if="ctrl.quizMain.questionsData[ctrl.questionId].choicesType === 'radio' || ctrl.quizMain.questionsData[ctrl.questionId].header"></th>
+        <th ng-if="ctrl.quizMain.questionsData[ctrl.questionId].choicesType === 'radio'"
+            ng-repeat="choice in ctrl.quizMain.questionsData[ctrl.questionId].choices"
+        ng-bind-html="choice">
+        </th>
+        <th ng-if="ctrl.quizMain.questionsData[ctrl.questionId].choicesType === 'rating' && ctrl.quizMain.questionsData[ctrl.questionId].header"
+        ng-bind-html="ctrl.quizMain.questionsData[ctrl.questionId].header">
+        </th>
+    </tr>
+
+    <tr ng-repeat="rowID in ctrl.quizMain.questionsData[ctrl.questionId].rowsID">
+        <!-- row statement -->
+        <td ng-bind-html="ctrl.quizMain.questionsData[ctrl.questionId].rows[rowID]"></td>
+
+        <!-- row radio buttons -->
+        <td ng-if="ctrl.quizMain.questionsData[ctrl.questionId].choicesType === 'radio'"
+            ng-repeat="choice in ctrl.quizMain.questionsData[ctrl.questionId].choices" class="radio">
+            <md-radio-group ng-model="ctrl.quizMain.questionsData[ctrl.questionId].answer[rowID]"
+                            ng-change="ctrl.change(rowID)">
+
+                <md-radio-button value="{{this.$index}}" class="md-primary" aria-label="{{ctrl.quizMain.questionsData[ctrl.questionId].rows[rowID]}}">
+                </md-radio-button>
+        </td>
+
+        <!-- row rating -->
+        <td  ng-if="ctrl.quizMain.questionsData[ctrl.questionId].choicesType === 'rating'">
+            <span layout="row">
+            <md-button ng-repeat="choice in ctrl.quizMain.questionsData[ctrl.questionId].choices" class="rating"
+                       flex-order="{{choice}}"
+                       ng-click="ctrl.changeRating(rowID, this.$index)"
+                       ng-class="['md-icon-button', 'icon',
+                             {'md-primary': $index >= ctrl.quizMain.questionsData[ctrl.questionId].answer[rowID]}]"
+                       aria-label="{{choice}}">
+
+                <md-icon ng-if="ctrl.quizMain.questionsData[ctrl.questionId].icon === 'star'"
+                         md-svg-icon="css/icons/grade.svg"></md-icon>
+                <md-icon ng-if="ctrl.quizMain.questionsData[ctrl.questionId].icon === 'heart'"
+                         md-svg-icon="css/icons/favorite.svg"></md-icon>
+                <md-icon ng-if="ctrl.quizMain.questionsData[ctrl.questionId].icon === 'thumb-up'"
+                         md-svg-icon="css/icons/thumb_up.svg"></md-icon>
+
+            </md-button>
+                </span>
+        </td>
+    </tr>
+</table>
+

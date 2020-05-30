@@ -1,0 +1,57 @@
+/* ICONS RIGHT - WRONG - STAR - HEART - THUMB UP */
+
+@font-face {
+  font-family: 'quickquiz-icons';
+  src:url('../fonts/quickquiz-icons.eot?-8f6la3');
+  src:url('../fonts/quickquiz-icons.eot?#iefix-8f6la3') format('embedded-opentype'),
+  url('../fonts/quickquiz-icons.ttf?-8f6la3') format('truetype'),
+  url('../fonts/quickquiz-icons.woff?-8f6la3') format('woff'),
+  url('../fonts/quickquiz-icons.svg?-8f6la3#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  font-family: 'quickquiz-icons';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#quickquiz .icon-right:before {
+  content: "\e206";
+  color: green;
+
+}
+#quickquiz .icon-wrong:before  {
+  content: "\e209";
+  color: red;
+}
+#quickquiz .icon-heart:before {
+  content: "\e291";
+}
+#quickquiz .icon-star:before {
+  content: "\e299";
+}
+#quickquiz .icon-thumb_up:before {
+  content: "\e2ee";
+}
+
+#quickquiz .icon-wrong, #quickquiz .icon-right {
+  margin-left: -1.2em;
+  margin-top: -5px;
+  padding-right: 0;
+  float: left;
+  font-size: 2em;
+}
+
+#quickquiz .icon-heart, #quickquiz .icon-star, #quickquiz .icon-thumb_up{
+  font-size: 2em;
+}

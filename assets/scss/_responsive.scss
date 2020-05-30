@@ -1,0 +1,48 @@
+/*
+File: Responsive
+*/
+
+
+@media (min-width: 768px) and (max-width: 991px) {
+  body {
+    overflow-x: hidden;
+  }
+}
+
+
+@media (max-width: 768px) {
+  body {
+    overflow-x: hidden;
+  }
+  .navbar-custom{
+    padding: 0px !important;
+  }
+  .mo-mb-2 {
+    margin-bottom: 10px;
+  }
+
+  .mo-mt-2 {
+    margin-top: 10px !important;
+  }
+  .message-list li {
+    .col-mail-2{
+      left: 328px;
+    }
+  }
+}
+
+@media (max-width: 420px) {
+  .hide-phone,.notify-icon {
+    display: none;
+  }
+  .dropdown-menu-lg {
+    width: 200px;
+  }
+  .notify-details {
+    margin-left: 0 !important;
+  }
+}
+
+
+
+

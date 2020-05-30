@@ -1,0 +1,58 @@
+<!-- buttons -->
+<div layout="row" layout-wrap class="layout-answers"
+     ng-class="{'halfWidth': ctrl.quizMain.questionsData[ctrl.questionId].halfWidth}"
+     ng-if="ctrl.quizMain.questionsData[ctrl.questionId].choicesType==='button'">
+
+    <div ng-repeat="choiceID in ctrl.quizMain.questionsData[ctrl.questionId].choicesID"
+         flex="{{ctrl.quizMain.questionsData[ctrl.questionId].itemsWidth}}"
+         flex-sm="{{ctrl.quizMain.questionsData[ctrl.questionId].mobileWidth}}"
+         ng-class="{'item-separation': ctrl.quizMain.questionsData[ctrl.questionId].itemSeparation}">
+
+        <md-button ng-click="ctrl.setAnswers(choiceID)"
+                   ng-class="['md-raised',
+                             {'md-primary': ctrl.quizMain.questionsData[ctrl.questionId].answer.indexOf(choiceID)>-1,
+                             'textLeft': ctrl.quizMain.questionsData[ctrl.questionId].textLeft,
+                             'no-border': ctrl.quizMain.questionsData[ctrl.questionId].noBorder,
+                             'semitransparent': ctrl.quizMain.questionsData[ctrl.questionId].semitransparent}]"
+                   aria-label="{{ctrl.quizMain.questionsData[ctrl.questionId].choices[choiceID]}}">
+            <span ng-if="!ctrl.quizMain.questionsData[ctrl.questionId].images" ng-bind-html="ctrl.quizMain.questionsData[ctrl.questionId].choices[choiceID]"></span>
+            <img ng-if="ctrl.quizMain.questionsData[ctrl.questionId].images" ng-src="{{ctrl.quizMain.questionsData[ctrl.questionId].choices[choiceID]}}"/>
+
+        </md-button>
+    </div>
+</div>
+
+<!-- checkbox -->
+<div layout="column" class="layout-answers" ng-if="ctrl.quizMain.questionsData[ctrl.questionId].choicesType==='checkbox'">
+
+    <md-checkbox ng-repeat="choiceID in ctrl.quizMain.questionsData[ctrl.questionId].choicesID"
+                 ng-click="ctrl.setAnswers(choiceID)"
+                 aria-label="{{ctrl.quizMain.questionsData[ctrl.questionId].choices[choiceID]}}"
+                 class="md-primary"
+                 ng-model="ctrl.quizMain.questionsData[ctrl.questionId].checkboxModel[this.$index]">
+        <span ng-if="!ctrl.quizMain.questionsData[ctrl.questionId].images" ng-bind-html="ctrl.quizMain.questionsData[ctrl.questionId].choices[choiceID]"></span>
+        <img ng-if="ctrl.quizMain.questionsData[ctrl.questionId].images" ng-src="{{ctrl.quizMain.questionsData[ctrl.questionId].choices[choiceID]}}"/>
+    </md-checkbox>
+
+
+    <!-- other checkbox button -->
+    <md-checkbox  ng-if="ctrl.quizMain.questionsData[ctrl.questionId].other"
+                  aria-label="ctrl.quizMain.questionsData[ctrl.questionId].other.text"
+                  class="md-primary"
+                  ng-click="ctrl.setAnswers(ctrl.quizMain.questionsData[ctrl.questionId].choices.length)"
+                  ng-model="ctrl.quizMain.questionsData[ctrl.questionId].checkboxModel[ctrl.quizMain.questionsData[ctrl.questionId].choices.length]">
+        <span ng-bind-html="ctrl.quizMain.questionsData[ctrl.questionId].other.text"></span>
+    </md-checkbox>
+
+    <!-- other input field -->
+    <md-input-container md-no-float
+                        ng-if="ctrl.quizMain.questionsData[ctrl.questionId].answer.indexOf(ctrl.quizMain.questionsData[ctrl.questionId].choices.length)>-1"
+                        ng-class="['other-multiple',
+                                {'other-bottom': ctrl.quizMain.questionsData[ctrl.questionId].other.position === 'bottom',
+                              'other-right': ctrl.quizMain.questionsData[ctrl.questionId].other.position === 'right'}]">
+        <input type="text" name="other" ng-model="ctrl.quizMain.questionsData[ctrl.questionId].other.answer" ng-change="ctrl.change()"
+               placeholder="{{ctrl.quizMain.questionsData[ctrl.questionId].other.placeholder}}">
+    </md-input-container>
+
+
+</div>

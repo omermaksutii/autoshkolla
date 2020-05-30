@@ -1,0 +1,116 @@
+{
+  "pages": [
+    {
+      "title": "AutoShkolla - Testi 1",
+      "questions": [
+        {
+          "type": "multiple-answers",
+          "statement": "Çka duhet të keni parasysh në këtë situatë?",
+          "graded": true,
+          "points": 8,
+          "penaltyPoints": -1,
+          "choicesType": "checkbox",
+          "choices": [
+            "Anashkalimin e obliguar nga ana e majtë.",
+            "Në përshtatje të shpejtësisë.",
+            "Vendkalimin e shënuar për këmbësorë."
+          ],
+          "solution": [
+            0,
+            1
+          ],
+          "imagePosition": "left",
+          "asideImage": "https://i.imgur.com/7i5pGID.png"
+        }
+      ]
+    },
+    {
+      "title": "AutoShkolla - Testi 1",
+      "questions": [
+        {
+        "type": "single-answer",
+        "statement": "Çka paralajmëron kjo shenjë e trafikut?",
+        "graded": true,
+        "points": 6,
+        "penaltyPoints": 0,
+        "choicesType": "radio",
+        "choices": [
+          "Afërsinë e bregdetit.",
+          "Urën lëvizëse.",
+          "Rrugën jo të rrafshtë."
+        ],
+        "solution": 0,
+        "imagePosition": "right",
+        "asideImage": "https://i.imgur.com/t24r2zK.png"
+      }
+      ]
+    },
+    {
+      "title": "AutoShkolla - Testi 1",
+      "questions": [
+        {
+          "type": "single-answer",
+          "statement": "Cilat mjete përfshihen në kategorinë B?",
+          "graded": true,
+          "points": 4,
+          "penaltyPoints": 0,
+          "choicesType": "button",
+          "choices": [
+            "Mjetet e udhëtarëve",
+            "Motokulvitatorët",
+            "Vetem Vetura",
+            "Kamioni"
+          ],
+          "itemsWidth": 50,
+          "itemSeparation": true,
+          "solution": 2
+        }
+      ]
+    },
+    {
+      "title": "AutoShkolla - Testi 1",
+      "questions": [
+        {
+          "type": "single-answer",
+          "statement": "Ku ndalohet ndalja e mjetit?",
+          "graded": true,
+          "points": 4,
+          "penaltyPoints": 0,
+          "choicesType": "button",
+          "choices": [
+            "Në nënkalime.",
+            "Mbi rrjetin e kanalizimit.",
+            "Brenda zonës urbane."
+          ],
+          "itemsWidth": 50,
+          "itemSeparation": true,
+          "solution": 0
+        }
+      ]
+    },
+    {
+      "title": "AutoShkolla - Testi 1",
+      "questions": [
+        {
+          "type": "multiple-answers",
+          "statement": "Shoferi i automjetit të udhëtarëve hyn në trafik duke lëvizur prapa. Si e vlerësoni këtë situatë ?",
+          "graded": true,
+          "points": 8,
+          "penaltyPoints": -1,
+          "choicesType": "checkbox",
+          "choices": [
+            "Drejt, nëse nuk i pengon pjesëmarrësit tjerë në trafik.",
+            "Drejt, nëse nuk i pengon pjesëmarrësit tjerë në trafik dhe i ndez të gjithë treguesit e drejtimit.",
+            "Jo drejt."
+          ],
+          "solution": [
+            0,
+            1
+          ],
+          "imagePosition": "left",
+          "asideImage": "https://i.imgur.com/Zv54Bzx.png"
+        }
+      ]
+    }
+  ]
+}

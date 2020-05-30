@@ -1,0 +1,71 @@
+<div ng-class="['quiz-container', {'md-whiteframe-3dp':home.quizConfig.settings.whiteframe}]">
+
+    <!-- Home title -->
+    <div ng-if="home.quizConfig.labels.homeTitle" style="margin-top:150px;">
+        <md-toolbar layout-padding ng-if="home.quizConfig.settings.titleToolbar" class="title-toolbar">
+            <h1 class="md-display-1 main-title">{{home.quizConfig.labels.homeTitle}}</h1>
+        </md-toolbar>
+        <h1 ng-if="!home.quizConfig.settings.titleToolbar"
+            class="md-display-1 main-title without-toolbar">{{home.quizConfig.labels.homeTitle}}</h1>
+    </div>
+
+    <!-- Home description -->
+    <div ng-if="home.quizConfig.labels.homeDescription" class="page"
+         ng-bind-html="home.quizConfig.labels.homeDescription"></div>
+
+    <!-- Write here your custom HTML home description -->
+    <!--
+    <div class="page">
+        Your code here
+    </div>
+    -->
+
+    <!-- Start button -->
+    <div ng-if="home.quizConfig.database.showForm != 'home'" layout="row" layout-align="center center"
+         class="prev-next nav-buttons">
+         <md-button onclick="window.location.href = '../quizze.php'">Kthehu</md-button>
+        <md-button ng-click="go('1')">{{home.quizConfig.labels.startQuiz}}</md-button>
+       
+
+    </div>
+
+    <!-- Form -->
+    <div ng-if="home.quizConfig.database.showForm === 'home'" class="page" layout-padding>
+        <form name="formData" ng-submit="formData.$valid && go('1')" novalidate>
+            <div layout="row">
+                <md-input-container flex ng-if="home.quizConfig.database.name">
+                    <label>{{home.quizConfig.labels.sendName}}</label>
+                    <input name="username" ng-model="home.quizDatabase.formName" required
+                           ng-focus="formData.$submitted=false">
+
+                    <div ng-messages="formData.username.$error" ng-if="formData.$submitted">
+                        <div ng-message="required">{{home.quizConfig.labels.requiredField}}</div>
+                    </div>
+                </md-input-container>
+
+                <md-input-container flex ng-if="home.quizConfig.database.email">
+                    <label>{{home.quizConfig.labels.sendEmail}}</label>
+                    <input name="email" ng-model="home.quizDatabase.formEmail" type="email" required
+                           ng-focus="formData.$submitted=false">
+
+                    <div ng-messages="formData.email.$error" ng-if="formData.$submitted">
+                        <div ng-message="required">{{home.quizConfig.labels.requiredField}}</div>
+                        <div ng-message="email">{{home.quizConfig.labels.emailError}}</div>
+                    </div>
+                </md-input-container>
+            </div>
+            <div layout="row" layout-align="center center">
+                <md-button type="submit">{{home.quizConfig.labels.startQuiz}}</md-button>
+                
+            </div>
+            
+        </form>
+    </div>
+
+</div>
+
+
+
+
+
+

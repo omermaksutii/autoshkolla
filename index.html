@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+  <title>Foxia - Responsive Bootstrap 4 Admin Dashboard</title>
+  <meta content="Admin Dashboard" name="description" />
+  <meta content="Themesbrand" name="author" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <!-- App Icons -->
+  <link rel="shortcut icon" href="assets/images/favicon.ico">
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
+  <!-- App css -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
+  <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+  <link href="assets/css/icons.css" rel="stylesheet" type="text/css" />
+  <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
+
+</head>
+
+
+<body>
+
+  <!-- Loader -->
+  <div id="preloader">
+    <div id="status">
+      <div class="spinner"></div>
+    </div>
+  </div>
+
+  <div class="header-bg">
+    <!-- Navigation Bar-->
+    <header id="topnav">
+      <div class="topbar-main">
+        <div class="container-fluid">
+
+          <!-- Logo-->
+          <div class="d-block d-lg-none mr-5">
+
+            <a href="index.html" class="logo">
+              <img src="assets/images/logo-sm.png" alt="" height="28" class="logo-small">
+            </a>
+
+          </div>
+          <!-- End Logo-->
+
+          <div class="menu-extras topbar-custom navbar firstnav p-0">
+
+            <ul class="list-inline flags-dropdown d-none d-lg-block mb-0">
+              <li class="list-inline-item text-white-50 mr-3">
+                <span class="font-13">Help : +012 3456 789</span>
+              </li>
+              <li class="list-inline-item dropdown notification-list">
+                <a class="nav-link dropdown-toggle text-white-50 arrow-none waves-effect waves-light"
+                  data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                  <img src="assets/images/flags/us_flag.jpg" alt="" class="flag-img">
+                  United States <i class="mdi mdi-chevron-down"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-animated">
+                  <a href="#" class="dropdown-item"><img src="assets/images/flags/french_flag.jpg" alt=""
+                      class="flag-img"> French</a>
+                  <a href="#" class="dropdown-item"><img src="assets/images/flags/germany_flag.jpg" alt=""
+                      class="flag-img"> Germany</a>
+                  <a href="#" class="dropdown-item"><img src="assets/images/flags/italy_flag.jpg" alt=""
+                      class="flag-img"> Italy</a>
+                  <a href="#" class="dropdown-item"><img src="assets/images/flags/spain_flag.jpg" alt=""
+                      class="flag-img"> Spain</a>
+                </div>
+              </li>
+            </ul>
+
+            <!-- User-->
+
+            <li class="menu-item list-inline-item">
+              <!-- Mobile menu toggle-->
+              <a class="navbar-toggle nav-link">
+                <div class="lines">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+              </a>
+              <!-- End mobile menu toggle-->
+            </li>
+
+            </ul>
+
+          </div>
+          <!-- end menu-extras -->
+
+          <div class="clearfix"></div>
+
+        </div> <!-- end container -->
+      </div>
+      <!-- end topbar-main -->
+
+      <!-- MENU Start -->
+      <div class="navbar-custom">
+        <div class="container-fluid">
+          <!-- Logo-->
+          <div class="d-none d-lg-block">
+            <!-- Text Logo
+                            <a href="index.html" class="logo">
+                                Foxia
+                            </a>
+                             -->
+            <!-- Image Logo -->
+            <a href="index.html" class="logo">
+              <!-- <img src="assets/images/logo-sm.png" alt="" height="22" class="logo-small"> -->
+              <img src="assets/images/logo.png" alt="" height="20" class="logo-large">
+            </a>
+
+          </div>
+          <!-- End Logo-->
+          <div id="navigation">
+
+            <!-- Navigation Menu-->
+            <ul class="navigation-menu">
+            
+              <li class="has-submenu">
+                <a href="index.html"><i class="dripicons-meter"></i>Home</a>
+              </li>
+              <li class="has-submenu">
+                <a href="about.html"><i class="mdi mdi-account-box"></i>About</a>
+              </li>
+              <li class="has-submenu">
+                <a href="about.html"><i class="mdi mdi-email"></i>Contact</a>
+              </li>
+              <li class="has-submenu">
+                <a href="login.php"><i class="mdi mdi-account"></i>Login</a>
+              </li>
+            </ul>
+            <!-- End navigation menu -->
+          </div> <!-- end #navigation -->
+        </div> <!-- end container -->
+      </div> <!-- end navbar-custom -->
+    </header>
+    <!-- End Navigation Bar-->
+    <section id="portfolio-details" class="portfolio-details">
+      <div class="container" data-aos="fade-up">
+
+        <div class="portfolio-details-container">
+
+          <div class="owl-carousel portfolio-details-carousel">
+            <img src="https://image.freepik.com/free-vector/driving-school-vector-background_53562-3860.jpg" alt="" class="img-fluid">
+            <img src="https://image.freepik.com/free-vector/driving-school-isometric-composition-with-conceptual-pictograms-arrows-text-captions-cars-road-intersection-illustration_1284-27265.jpg" class="img-fluid" alt="">
+            <img src="https://image.freepik.com/free-vector/driving-school-set_191108-22.jpg" class="img-fluid" alt="">
+          </div>
+
+          <div class="portfolio-info">
+            <h3>Project information</h3>
+            <ul>
+              <li><strong>Category</strong>: Education</li>
+              <li><strong>Organizer</strong>: Hackathon</li>
+              <li><strong>Project date</strong>: 29 May, 2020</li>
+              <li><strong>Our Team</strong>: 02 Connection</li>
+            </ul>
+          </div>
+
+        </div>
+
+
+      </div>
+    </section><!-- End Portfolio Details Section -->
+
+
+
+    <main id="main">
+
+      <!-- ======= About Section ======= -->
+      <section id="about" class="about">
+        <div class="container" data-aos="fade-up">
+
+          <div class="section-title">
+            <h2>Learn To Drive</h2>
+
+            <p>Welcome to the page where you can have best practicing experience to learn for your driving license</p>
+          </div>
+
+          <div class="row content">
+            <div class="col-lg-6">
+              <p>
+                This webpage is created to give people a chance to learn for their driving license by going through our
+                theoritical tests taken from MITE(Ministry of Infrastructure and Enviroment).
+              </p>
+              <ul>
+                <li><i class="ri-check-double-line"></i> 40 theoritical test to get you prepared for theoritical tests
+                </li>
+                <li><i class="ri-check-double-line"></i> Access for instructors to monitor their students progress</li>
+                <li><i class="ri-check-double-line"></i> Get 85% of points on every test means that you are fully
+                  prepared to pass theoritical tests</li>
+              </ul>
+            </div>
+            <div class="col-lg-6 pt-4 pt-lg-0">
+              <p>
+                We want you to be fully prepared for theoritical test for driving license.If you want to pass the tests
+                on the first time you enter them ,go through them to practitce and be fully prepared, after finishing
+                them all you will be able to go and take the tests and we guarantee that you are going to be satisfied
+                with the results at the end.Our goal is to make people who get these tests to save money,time and nerves
+                because we all know how frustrating it is to fail on your driving license.
+              </p>
+              <a href="#" class="btn-learn-more">Learn More</a>
+            </div>
+          </div>
+
+        </div>
+      </section><!-- End About Section -->
+
+      <!-- ======= Counts Section ======= -->
+      <section id="counts" class="counts section-bg">
+        <div class="container">
+
+          <div class="row justify-content-end">
+
+            <div class="col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch">
+              <div class="count-box">
+                <span data-toggle="counter-up">65</span>
+                <p>Happy Clients</p>
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch">
+              <div class="count-box">
+                <span data-toggle="counter-up">40</span>
+                <p>Tests</p>
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch">
+              <div class="count-box">
+                <span data-toggle="counter-up">12</span>
+                <p>Instructors</p>
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch">
+              <div class="count-box">
+                <span data-toggle="counter-up">3</span>
+                <p>Admins</p>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </section><!-- End Counts Section -->
+
+      <!-- ======= About Video Section ======= -->
+      <section id="about-video" class="about-video">
+        <div class="container" data-aos="fade-up">
+
+          <div class="row">
+
+            <div class="col-lg-6 video-box align-self-baseline" data-aos="fade-right" data-aos-delay="100">
+              <img src="assets/img/about-video.jpg" class="img-fluid" alt="">
+              <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="venobox play-btn mb-4" data-vbtype="video"
+                data-autoplay="true"></a>
+            </div>
+
+            <div class="col-lg-6 pt-3 pt-lg-0 content" data-aos="fade-left" data-aos-delay="100">
+              <h3>Save time and money by taking our theoritical tests to be sure you will pass</h3>
+              <p class="font-italic">
+                We have been through this and we know what people need to learn for passing their theoritical tests on
+                the first shot.
+              </p>
+              <ul>
+                <li><i class="bx bx-check-double"></i> Friendly user interface for students and instructors.</li>
+                <li><i class="bx bx-check-double"></i> Official theoritical tests taken from Ministry of Infrastructure.
+                </li>
+                <li><i class="bx bx-check-double"></i> Fun and joy by going through quizzes.</li>
+                <li><i class="bx bx-check-double"></i> This website is going to provide quesitons based on your city
+                  roads and you will be notified by instructors</li>
+              </ul>
+              <p>
+                If you fail on the first time you enter the exam than you will have to wait two weeks to be eligible to
+                enter it again to prevent this situtation go and take 40 tests given by us so you will be able to pass
+                the exam on the first shot and you will thank us later,we would be thankful to help you and to put you
+                on our happ clients statistics.
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+      </section><!-- End About Video Section -->
+
+      <!-- ======= Clients Section ======= -->
+      <section id="clients" class="clients section-bg">
+        <div class="container">
+
+          <div class="row">
+
+            <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center" data-aos="zoom-in">
+              <img src="assets/img/clients/client-1.png" class="img-fluid" alt="">
+            </div>
+
+            <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center" data-aos="zoom-in">
+              <img src="assets/img/clients/client-2.png" class="img-fluid" alt="">
+            </div>
+
+            <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center" data-aos="zoom-in">
+              <img src="assets/img/clients/client-3.png" class="img-fluid" alt="">
+            </div>
+
+            <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center" data-aos="zoom-in">
+              <img src="assets/img/clients/client-4.png" class="img-fluid" alt="">
+            </div>
+
+            <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center" data-aos="zoom-in">
+              <img src="assets/img/clients/client-5.png" class="img-fluid" alt="">
+            </div>
+
+            <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center" data-aos="zoom-in">
+              <img src="assets/img/clients/client-6.png" class="img-fluid" alt="">
+            </div>
+
+          </div>
+
+        </div>
+      </section><!-- End Clients Section -->
+
+      <!-- ======= Testimonials Section ======= -->
+      <section id="testimonials" class="testimonials">
+        <div class="container" data-aos="fade-up">
+
+          <div class="section-title">
+            <h2>Testimonials</h2>
+            <p>Here you can find responses from our happy clients which are students who practiced by passing our tests
+              and instructors who have been monitoring their student progress</p>
+          </div>
+
+          <div class="owl-carousel testimonials-carousel">
+
+            <div class="testimonial-item">
+              <p>
+                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                By taking these quizzes I learned more and fullfiled my confidence of passing the theoritical test on my
+                first shot.I am greatful to people who developed this page and instructors who helped us during our
+                progress.
+                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+              </p>
+              <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
+              <h3>Saul Goodman</h3>
+              <h4>Student</h4>
+            </div>
+
+            <div class="testimonial-item">
+              <p>
+                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                This is what I was looking for before taking my driving license theoritical test and I'm feeling very
+                blessed that I found it right on time.I took all the exams for a week,sccored above 85% of every quizz
+                and passed my test on the first time.
+                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+              </p>
+              <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
+              <h3>Sara Wilsson</h3>
+              <h4>Student</h4>
+            </div>
+
+            <div class="testimonial-item">
+              <p>
+                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                Considering that some of the students may be at work at the time of lecture or some others may not come
+                every day this was very handy for me to give them lessons in different times of day and be there to give
+                them answers for questions which are unclear to them.
+                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+              </p>
+              <img src="assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
+              <h3>Jena Karlis</h3>
+              <h4>Instructor</h4>
+            </div>
+
+            <div class="testimonial-item">
+              <p>
+                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                I'm sure this platform helped students a lot but not only them,I as an instructor was able to do my job
+                at ease because of the tools available in here.Helping my students every time of the day was what I
+                always wanted but wasn't possible till now.
+                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+              </p>
+              <img src="assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
+              <h3>Matt Brandon</h3>
+              <h4>Instructor</h4>
+            </div>
+
+            <div class="testimonial-item">
+              <p>
+                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                When we first were gathered as a team of developers we wanted to make something that helps people to
+                learn and be prepared for something than after a lot of ideas and a lot of discussion we came out with
+                this idea of helping people to learn for driving license on our webpage and be able to know when they
+                are enough prepared to go and take the exam.
+                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+              </p>
+              <img src="assets/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
+              <h3>John Larson</h3>
+              <h4>Web-developer</h4>
+            </div>
+
+          </div>
+
+        </div>
+      </section><!-- End Testimonials Section -->
+
+      <!-- ======= Services Section ======= -->
+      <section id="services" class="services section-bg">
+        <div class="container" data-aos="fade-up">
+
+          <div class="section-title">
+            <h2>Sevices</h2>
+            <p>We provide services for instructors and students who want to teach and learn through the internet.Our
+              services are available to everyone who can use a computer and is willing to learn</p>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+              <div class="icon-box iconbox-blue">
+                <div class="icon">
+                  <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke="none" stroke-width="0" fill="#f5f5f5"
+                      d="M300,521.0016835830174C376.1290562159157,517.8887921683347,466.0731472004068,529.7835943286574,510.70327084640275,468.03025145048787C554.3714126377745,407.6079735673963,508.03601936045806,328.9844924480964,491.2728898941984,256.3432110539036C474.5976632858925,184.082847569629,479.9380746630129,96.60480741107993,416.23090153303,58.64404602377083C348.86323505073057,18.502131276798302,261.93793281208167,40.57373210992963,193.5410806939664,78.93577620505333C130.42746243093433,114.334589627462,98.30271207620316,179.96522072025542,76.75703585869454,249.04625023123273C51.97151888228291,328.5150500222984,13.704378332031375,421.85034740162234,66.52175969318436,486.19268352777647C119.04800174914682,550.1803526380478,217.28368757567262,524.383925680826,300,521.0016835830174">
+                    </path>
+                  </svg>
+                  <i class="bx bxl-dribbble"></i>
+                </div>
+                <h4><a href="">Tests progress</a></h4>
+                <p>As a student or instructor you will see the progress</p>
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in"
+              data-aos-delay="200">
+              <div class="icon-box iconbox-orange ">
+                <div class="icon">
+                  <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke="none" stroke-width="0" fill="#f5f5f5"
+                      d="M300,582.0697525312426C382.5290701553225,586.8405444964366,449.9789794690241,525.3245884688669,502.5850820975895,461.55621195738473C556.606425686781,396.0723002908107,615.8543463187945,314.28637112970534,586.6730223649479,234.56875336149918C558.9533121215079,158.8439757836574,454.9685369536778,164.00468322053177,381.49747125262974,130.76875717737553C312.15926192815925,99.40240125094834,248.97055460311594,18.661163978235184,179.8680185752513,50.54337015887873C110.5421016452524,82.52863877960104,119.82277516462835,180.83849132639028,109.12597500060166,256.43424936330496C100.08760227029461,320.3096726198365,92.17705696193138,384.0621239912766,124.79988738764834,439.7174275375508C164.83382741302287,508.01625554203684,220.96474134820875,577.5009287672846,300,582.0697525312426">
+                    </path>
+                  </svg>
+                  <i class="bx bx-file"></i>
+                </div>
+                <h4><a href="">Official tests</a></h4>
+                <p>these tests are official from ministry and eligible to everyone</p>
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0" data-aos="zoom-in"
+              data-aos-delay="300">
+              <div class="icon-box iconbox-pink">
+                <div class="icon">
+                  <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke="none" stroke-width="0" fill="#f5f5f5"
+                      d="M300,541.5067337569781C382.14930387511276,545.0595476570109,479.8736841581634,548.3450877840088,526.4010558755058,480.5488172755941C571.5218469581645,414.80211281144784,517.5187510058486,332.0715597781072,496.52539010469104,255.14436215662573C477.37192572678356,184.95920475031193,473.57363656557914,105.61284051026155,413.0603344069578,65.22779650032875C343.27470386102294,18.654635553484475,251.2091493199835,5.337323636656869,175.0934190732945,40.62881213300186C97.87086631185822,76.43348514350839,51.98124368387456,156.15599469081315,36.44837278890362,239.84606092416172C21.716077023791087,319.22268207091537,43.775223500013084,401.1760424656574,96.891909868211,461.97329694683043C147.22146801428983,519.5804099606455,223.5754009179313,538.201503339737,300,541.5067337569781">
+                    </path>
+                  </svg>
+                  <i class="bx bx-tachometer"></i>
+                </div>
+                <h4><a href="">Admin assistance 24/7</a></h4>
+                <p>Our admins will be available at any time to help</p>
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="100">
+              <div class="icon-box iconbox-yellow">
+                <div class="icon">
+                  <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke="none" stroke-width="0" fill="#f5f5f5"
+                      d="M300,503.46388370962813C374.79870501325706,506.71871716319447,464.8034551963731,527.1746412648533,510.4981551193396,467.86667711651364C555.9287308511215,408.9015244558933,512.6030010748507,327.5744911775523,490.211057578863,256.5855673507754C471.097692560561,195.9906835881958,447.69079081568157,138.11976852964426,395.19560036434837,102.3242989838813C329.3053358748298,57.3949838291264,248.02791733380457,8.279543830951368,175.87071277845988,42.242879143198664C103.41431057327972,76.34704239035025,93.79494320519305,170.9812938413882,81.28167332365135,250.07896920659033C70.17666984294237,320.27484674793965,64.84698225790005,396.69656628748305,111.28512138212992,450.4950937839243C156.20124167950087,502.5303643271138,231.32542653798444,500.4755392045468,300,503.46388370962813">
+                    </path>
+                  </svg>
+                  <i class="bx bx-layer"></i>
+                </div>
+                <h4><a href="">Nemo Enim</a></h4>
+                <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</p>
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="200">
+              <div class="icon-box iconbox-red">
+                <div class="icon">
+                  <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke="none" stroke-width="0" fill="#f5f5f5"
+                      d="M300,532.3542879108572C369.38199826031484,532.3153073249985,429.10787420159085,491.63046689027357,474.5244479745417,439.17860296908856C522.8885846962883,383.3225815378663,569.1668002868075,314.3205725914397,550.7432151929288,242.7694973846089C532.6665558377875,172.5657663291529,456.2379748765914,142.6223662098291,390.3689995646985,112.34683881706744C326.66090330228417,83.06452184765237,258.84405631176094,53.51806209861945,193.32584062364296,78.48882559362697C121.61183558270385,105.82097193414197,62.805066853699245,167.19869350419734,48.57481801355237,242.6138429142374C34.843463184063346,315.3850353017275,76.69343916112496,383.4422959591041,125.22947124332185,439.3748458443577C170.7312796277747,491.8107796887764,230.57421082200815,532.3932930995766,300,532.3542879108572">
+                    </path>
+                  </svg>
+                  <i class="bx bx-slideshow"></i>
+                </div>
+                <h4><a href="">Dele Cardo</a></h4>
+                <p>Quis consequatur saepe eligendi voluptatem consequatur dolor consequuntur</p>
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="300">
+              <div class="icon-box iconbox-teal">
+                <div class="icon">
+                  <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke="none" stroke-width="0" fill="#f5f5f5"
+                      d="M300,566.797414625762C385.7384707136149,576.1784315230908,478.7894351017131,552.8928747891023,531.9192734346935,484.94944893311C584.6109503024035,417.5663521118492,582.489472248146,322.67544863468447,553.9536738515405,242.03673114598146C529.1557734026468,171.96086150256528,465.24506316201064,127.66468636344209,395.9583748389544,100.7403814666027C334.2173773831606,76.7482773500951,269.4350130405921,84.62216499799875,207.1952322260088,107.2889140133804C132.92018162631612,134.33871894543012,41.79353780512637,160.00259165414826,22.644507872594943,236.69541883565114C3.319112789854554,314.0945973066697,72.72355303640163,379.243833228382,124.04198916343866,440.3218312028393C172.9286146004772,498.5055451809895,224.45579914871206,558.5317968840102,300,566.797414625762">
+                    </path>
+                  </svg>
+                  <i class="bx bx-arch"></i>
+                </div>
+                <h4><a href="">Divera Don</a></h4>
+                <p>Modi nostrum vel laborum. Porro fugit error sit minus sapiente sit aspernatur</p>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </section><!-- End Sevices Section -->
+
+
+
+
+      <!-- ======= Frequently Asked Questions Section ======= -->
+      <section id="faq" class="faq section-bg">
+        <div class="container" data-aos="fade-up">
+
+          <div class="section-title">
+            <h2>Frequently Asked Questions</h2>
+            <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint
+              consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat
+              sit in iste officiis commodi quidem hic quas.</p>
+          </div>
+
+          <div class="faq-list">
+            <ul>
+              <li data-aos="fade-up">
+                <i class="bx bx-help-circle icon-help"></i> <a data-toggle="collapse" class="collapse"
+                  href="#faq-list-1">Non consectetur a erat nam at lectus urna duis? <i
+                    class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                <div id="faq-list-1" class="collapse show" data-parent=".faq-list">
+                  <p>
+                    Feugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet non curabitur
+                    gravida. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non.
+                  </p>
+                </div>
+              </li>
+
+              <li data-aos="fade-up" data-aos-delay="100">
+                <i class="bx bx-help-circle icon-help"></i> <a data-toggle="collapse" href="#faq-list-2"
+                  class="collapsed">Feugiat scelerisque varius morbi enim nunc? <i
+                    class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                <div id="faq-list-2" class="collapse" data-parent=".faq-list">
+                  <p>
+                    Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id
+                    donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque
+                    elit ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa tincidunt dui.
+                  </p>
+                </div>
+              </li>
+
+              <li data-aos="fade-up" data-aos-delay="200">
+                <i class="bx bx-help-circle icon-help"></i> <a data-toggle="collapse" href="#faq-list-3"
+                  class="collapsed">Dolor sit amet consectetur adipiscing elit? <i
+                    class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                <div id="faq-list-3" class="collapse" data-parent=".faq-list">
+                  <p>
+                    Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Faucibus pulvinar
+                    elementum integer enim. Sem nulla pharetra diam sit amet nisl suscipit. Rutrum tellus pellentesque
+                    eu tincidunt. Lectus urna duis convallis convallis tellus. Urna molestie at elementum eu facilisis
+                    sed odio morbi quis
+                  </p>
+                </div>
+              </li>
+
+              <li data-aos="fade-up" data-aos-delay="300">
+                <i class="bx bx-help-circle icon-help"></i> <a data-toggle="collapse" href="#faq-list-4"
+                  class="collapsed">Tempus quam pellentesque nec nam aliquam sem et tortor consequat? <i
+                    class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                <div id="faq-list-4" class="collapse" data-parent=".faq-list">
+                  <p>
+                    Molestie a iaculis at erat pellentesque adipiscing commodo. Dignissim suspendisse in est ante in.
+                    Nunc vel risus commodo viverra maecenas accumsan. Sit amet nisl suscipit adipiscing bibendum est.
+                    Purus gravida quis blandit turpis cursus in.
+                  </p>
+                </div>
+              </li>
+
+              <li data-aos="fade-up" data-aos-delay="400">
+                <i class="bx bx-help-circle icon-help"></i> <a data-toggle="collapse" href="#faq-list-5"
+                  class="collapsed">Tortor vitae purus faucibus ornare. Varius vel pharetra vel turpis nunc eget lorem
+                  dolor? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                <div id="faq-list-5" class="collapse" data-parent=".faq-list">
+                  <p>
+                    Laoreet sit amet cursus sit amet dictum sit amet justo. Mauris vitae ultricies leo integer malesuada
+                    nunc vel. Tincidunt eget nullam non nisi est sit amet. Turpis nunc eget lorem dolor sed. Ut
+                    venenatis tellus in metus vulputate eu scelerisque.
+                  </p>
+                </div>
+              </li>
+
+            </ul>
+          </div>
+
+        </div>
+      </section><!-- End Frequently Asked Questions Section -->
+
+
+
+
+
+      <!-- Footer -->
+      <footer class="footer">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-12">
+              © 2020 <span class="d-none d-md-inline-block"> - Crafted with <i class="mdi mdi-heart text-danger"></i> by
+                02 Connection.</span>
+            </div>
+          </div>
+        </div>
+      </footer>
+      <!-- End Footer -->
+
+
+      <!-- jQuery  -->
+      <script src="assets/js/jquery.min.js"></script>
+      <script src="assets/js/bootstrap.bundle.min.js"></script>
+      <script src="assets/js/modernizr.min.js"></script>
+      <script src="assets/js/waves.js"></script>
+      <script src="assets/js/jquery.slimscroll.js"></script>
+
+
+      <!-- Chart JS -->
+      <script src="../plugins/chart.js/chart.min.js"></script>
+      <script src="assets/pages/chartjs.init.js"></script>
+
+      <!-- App js -->
+      <script src="assets/js/app.js"></script>
+
+      <!-- Vendor JS Files -->
+      <script src="assets/vendor/jquery/jquery.min.js"></script>
+      <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+      <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+      <script src="assets/vendor/php-email-form/validate.js"></script>
+      <script src="assets/vendor/waypoints/jquery.waypoints.min.js"></script>
+      <script src="assets/vendor/counterup/counterup.min.js"></script>
+      <script src="assets/vendor/venobox/venobox.min.js"></script>
+      <script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+      <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+      <script src="assets/vendor/aos/aos.js"></script>
+
+      <!-- Template Main JS File -->
+      <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

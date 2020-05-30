@@ -1,0 +1,15 @@
+<!-- Question textarea -->
+
+<div layout="row" layout-wrap flex
+     class="layout-answers"
+     ng-class="{'halfWidth': ctrl.quizMain.questionsData[ctrl.questionId].halfWidth}">
+    <md-input-container ng-class="{'halfWidth': ctrl.quizMain.questionsData[ctrl.questionId].choicesLeft}" md-no-float flex="grow">
+    <textarea name="long-answer-input" class='answer-choices'
+              ng-model="ctrl.quizMain.questionsData[ctrl.questionId].answer"
+              ng-change="ctrl.change()"
+              placeholder="{{ctrl.quizMain.questionsData[ctrl.questionId].placeholder}}"
+              aria-label="{{ctrl.quizMain.questionsData[ctrl.questionId].placeholder}}"
+              ng-attr-md-maxlength="{{ctrl.quizMain.questionsData[ctrl.questionId].maxlength}}">
+    </textarea>
+    </md-input-container>
+</div>

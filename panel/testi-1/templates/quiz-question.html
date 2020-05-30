@@ -1,0 +1,231 @@
+<!-- Main page title-->
+<div ng-if="main.quizQuestions.pages[main.currentPage-1].title && !main.mainTitle">
+    <md-toolbar layout-padding ng-if="main.quizConfig.settings.titleToolbar">
+        <h1 class="md-display-1">{{main.quizQuestions.pages[main.currentPage-1].title}}</h1>
+    </md-toolbar>
+    <h1 ng-if="!main.quizConfig.settings.titleToolbar"
+        class="md-display-1 main-title without-toolbar">{{main.quizQuestions.pages[main.currentPage-1].title}}</h1>
+</div>
+
+<div class="page" layout-padding>
+    <!-- Secondary page title-->
+    <h2 ng-if="main.quizQuestions.pages[main.currentPage-1].title && main.mainTitle" class="md-headline">
+        {{main.quizQuestions.pages[main.currentPage-1].title}}</h2>
+
+    <!-- Page description -->
+    <div class="description" ng-if="main.quizQuestions.pages[main.currentPage-1].description"
+         ng-bind-html="main.quizQuestions.pages[main.currentPage-1].description"></div>
+
+    <!-- Video -->
+    <div ng-class="['videogular-container', {'audio': main.audioClass.audio, 'video': !main.audioClass.audio}]"
+         ng-if="main.quizQuestions.pages[main.currentPage-1].media || main.quizQuestions.pages[main.currentPage-1].youtube">
+        <videogular vg-player-ready="main.onPlayerReady($API)" vg-cue-points="main.cuePoints"
+                    ng-class="[{'hide-controls': main.hideVideoControls, 'audio': main.audioClass.audio}]">
+
+            <vg-media ng-if="!main.quizQuestions.pages[main.currentPage-1].youtube"
+                      vg-src="main.quizQuestions.pages[main.currentPage-1].mediaConfig.source"></vg-media>
+            <vg-media ng-if="main.quizQuestions.pages[main.currentPage-1].youtube"
+                      vg-src="main.quizQuestions.pages[main.currentPage-1].mediaConfig.source"
+                      vg-youtube="rel=1;showinfo=1"></vg-media>
+
+            <vg-controls vg-autohide="false" vg-autohide-time="3000" ng-if="main.audioClass.audio || (!main.audioClass.audio && !main.hideVideoControls && (main.API.currentState === 'play' || main.API.currentState === 'pause')) ">
+                <vg-play-pause-button></vg-play-pause-button>
+                <vg-scrub-bar>
+                    <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+                    <vg-scrub-bar-cue-points
+                            vg-cue-points="main.quizQuestions.pages[main.currentPage-1].mediaConfig.cuePoints.questions"></vg-scrub-bar-cue-points>
+                </vg-scrub-bar>
+                <vg-time-display>{{ currentTime | date:'mm:ss':'+0000'}}</vg-time-display>
+
+                <vg-volume>
+                    <vg-volume-bar></vg-volume-bar>
+                    <vg-mute-button></vg-mute-button>
+                </vg-volume>
+            </vg-controls>
+
+            <vg-overlay-play ng-if="!main.audioClass.audio && !main.quizQuestions.pages[main.currentPage-1].youtube"></vg-overlay-play>
+            <vg-buffering></vg-buffering>
+        </videogular>
+    </div>
+
+    <!-- Questions on the current page -->
+    <div ng-repeat="question in main.quizQuestions.pages[main.currentPage-1].questions" class="question"
+         ng-if="main.checkCuepoint(question)">
+
+        <!-- Questions statement and points-->
+        <div layout="row" layout-align="space-between start" class="question-statement-line">
+            <!-- Question statement -->
+            <h3><span ng-if="main.quizConfig.settings.showQuestionNumber">{{question.id +1}}.</span>
+                <span ng-bind-html="question.statement"></span>
+            <span ng-if="main.quizConfig.settings.requiredAsterisk && (main.quizConfig.settings.requiredQuestions || question.required)">*</span></h3>
+            <!-- Question points -->
+            <div class="pointsPerQuestion md-caption"
+                 ng-if="main.quizConfig.settings.showPointsPerQuestion && main.checkCuepoint(question) && question.graded">
+                <span ng-if="question.points">{{question.points}} </span>
+                <span ng-if="!question.points && main.quizConfig.score.pointsPerQuestion">{{main.quizConfig.score.pointsPerQuestion}} </span>
+                <span ng-if="!question.points && main.quizConfig.score.maxPoints && question.type != 'matrix'">{{(main.quizConfig.score.maxPoints/main.numQuestionsGraded).toFixed(main.quizConfig.score.decimalNumber) | number}} </span>
+                <span ng-if="!question.points && main.quizConfig.score.maxPoints && question.type === 'matrix'">{{(main.quizConfig.score.maxPoints/main.numQuestionsGraded * question.rows.length).toFixed(main.quizConfig.score.decimalNumber) | number}} </span>
+
+                {{main.quizConfig.labels.pointsPerQuestionText}}
+            </div>
+        </div>
+
+        <!-- Question required alert -->
+        <div class="alert" ng-if="main.showGlobalAlert() && main.showQuestionAlert(question) && main.quizConfig.settings.showQuestionAlert ">
+            {{main.quizConfig.labels.requiredQuestionAlert}}</div>
+
+        <!-- Question description -->
+        <!--<div class="description" ng-if="question.description" ng-bind-html="question.trustedDescription"></div>-->
+        <div class="description" ng-if="question.description" ng-bind-html="question.description"></div>
+
+        <!-- Question answer container -->
+        <div layout="row" class="answer-container" layout-padding layout-wrap
+             ng-style="{'background-image': 'url('+question.bgImg+')',
+                       'min-height':question.minHeight + 'px'}">
+
+            <!-- Aside Image Left-->
+            <div class="aside-image" layout-padding ng-if="question.asideImage && question.imagePosition==='left'"
+                 flex-gt-sm="50" flex-sm="100"
+                 ng-class="['aside-image', {'hide-image-mobile': question.hideImageMobile}]">
+                <img ng-click="main.showImage(question.asideImage)" ng-src="{{question.asideImage}}"/>
+            </div>
+
+
+            <!-- Questions -->
+            <single-answer quiz-main="main" question-id="question.id" class="single-answer" flex
+                           ng-if='main.quizQuestions.pages[main.currentPage-1].questions[this.$index].type === "single-answer" && main.checkCuepoint(question)'></single-answer>
+
+            <multiple-answers quiz-main="main" question-id="question.id" class="multiple-answers" flex
+                              ng-if='main.quizQuestions.pages[main.currentPage-1].questions[this.$index].type === "multiple-answers" && main.checkCuepoint(question)'></multiple-answers>
+
+            <short-answer quiz-main="main" question-id="question.id" class="short-answer" flex
+                          ng-if='main.quizQuestions.pages[main.currentPage-1].questions[this.$index].type === "short-answer" && main.checkCuepoint(question)'></short-answer>
+
+            <sequence quiz-main="main" question-id="question.id" class="sequence" flex
+                      ng-if='main.quizQuestions.pages[main.currentPage-1].questions[this.$index].type === "sequence" && main.checkCuepoint(question)'></sequence>
+
+            <matching-pairs quiz-main="main" question-id="question.id" class="matching-pairs" flex
+                            ng-if='main.quizQuestions.pages[main.currentPage-1].questions[this.$index].type === "matching-pairs" && main.checkCuepoint(question)'></matching-pairs>
+
+            <long-answer quiz-main="main" question-id="question.id" class="long-answer" flex
+                         ng-if='main.quizQuestions.pages[main.currentPage-1].questions[this.$index].type === "long-answer" && main.checkCuepoint(question)'></long-answer>
+
+            <likert-scale quiz-main="main" question-id="question.id" class="likert-scale" flex
+                          ng-if='main.quizQuestions.pages[main.currentPage-1].questions[this.$index].type === "likert-scale" && main.checkCuepoint(question)'></likert-scale>
+
+            <rating quiz-main="main" question-id="question.id" class="rating" flex
+                    ng-if='main.quizQuestions.pages[main.currentPage-1].questions[this.$index].type === "rating" && main.checkCuepoint(question)'></rating>
+
+            <matrix quiz-main="main" question-id="question.id" class="matrix" flex
+                    ng-if='main.quizQuestions.pages[main.currentPage-1].questions[this.$index].type === "matrix" && main.checkCuepoint(question)'></matrix>
+
+            <!-- Aside Image Right-->
+            <div layout-padding class="aside-image" ng-if="question.asideImage && question.imagePosition==='right'"
+                 flex-gt-sm="50" flex-sm="0"
+                 ng-class="['aside-image', {'hide-image-mobile': question.hideImageMobile}]">
+                <img ng-click="main.showImage(question.asideImage)" ng-src="{{question.asideImage}}"/>
+            </div>
+        </div>
+
+
+        <!-- Question feedback -->
+        <div class="feedback" ng-if="question.feedback != undefined && question.answerState != 'blank' && ((question.type != 'sequence' && question.type != 'matching-pairs' && question.type != 'matrix') || question.complete === true)">
+            <div class="feedback-right"
+                 ng-if="question.feedback.right != undefined && question.answerState === 'right'">
+                <md-button class="md-primary" ng-if="question.feedbackClass==='button'"
+                           ng-click="main.showFeedback(question.feedback.right)">
+                    {{main.quizConfig.labels.showFeedback}}
+                </md-button>
+                <div layout="row" layout-align="center center">
+                    <p ng-if="question.feedbackClass==='text'" class="p-feedback-right"><span class='icon-right'></span>{{question.feedback.right}}</p>
+                </div>
+            </div>
+
+            <div class="feedback-wrong"
+                 ng-if="question.feedback.wrong != undefined && question.answerState === 'wrong'">
+                <md-button class="md-primary" ng-if="question.feedbackClass==='button'"
+                           ng-click="main.showFeedback(question.feedback.wrong)">
+                    {{main.quizConfig.labels.showFeedback}}
+                </md-button>
+                <div layout="row" layout-align="center center">
+                    <p ng-if="question.feedbackClass==='text'" class="p-feedback-wrong"><span class='icon-wrong'></span>{{question.feedback.wrong}}</p></div>
+            </div>
+
+            <div class="feedback-option"
+                 ng-if="question.feedback.option != undefined && question.feedback.option[question.answer]!= null">
+                <md-button class="md-primary" ng-if="question.feedbackClass==='button'"
+                           ng-click="main.showFeedback(question.feedback.option[question.answer])">
+                    {{main.quizConfig.labels.showFeedback}}
+                </md-button>
+                <div layout="row" layout-align="center center">
+                    <p ng-if="question.feedbackClass==='text'" class="p-feedback">
+                        {{question.feedback.option[question.answer]}}</p></div>
+            </div>
+
+            <div class="feedback-partial-right"
+                 ng-if="question.feedback.partial != undefined && question.answerState === 'right'">
+                <div ng-if="question.feedback.partial.allRight != undefined ">
+                    <md-button ng-if="question.feedbackClass==='button'" class="md-primary"
+                               ng-click="main.showFeedback(question.feedback.partial.allRight)">
+                        {{main.quizConfig.labels.showFeedback}}
+                    </md-button>
+                    <div layout="row" layout-align="center center">
+                        <p ng-if="question.feedbackClass==='text'" class="p-feedback">
+                            {{question.feedback.partial.allRight}}</p></div>
+                </div>
+            </div>
+
+            <div class="feedback-partial-wrong"
+                 ng-if="question.feedback.partial != undefined && !question.someRight && question.someWrong">
+                <div ng-if="question.feedback.partial.allWrong != undefined">
+                    <md-button ng-if="question.feedbackClass==='button'" class="md-primary"
+                               ng-click="main.showFeedback(question.feedback.partial.allWrong)">
+                        {{main.quizConfig.labels.showFeedback}}
+                    </md-button>
+                    <div layout="row" layout-align="center center">
+                        <p ng-if="question.feedbackClass==='text'" class="p-feedback">
+                            {{question.feedback.partial.allWrong}}</p></div>
+                </div>
+            </div>
+
+            <div class="feedback-partial"
+                 ng-if="question.feedback.partial != undefined && question.someRight && question.someWrong">
+                <div ng-if="question.feedback.partial.wrongRight != undefined">
+                    <md-button ng-if="question.feedbackClass==='button'" class="md-primary"
+                               ng-click="main.showFeedback(question.feedback.partial.wrongRight)">
+                        {{main.quizConfig.labels.showFeedback}}
+                    </md-button>
+                    <div layout="row" layout-align="center center">
+                        <p ng-if="question.feedbackClass==='text'" class="p-feedback">
+                            {{question.feedback.partial.wrongRight}}</p></div>
+                </div>
+            </div>
+
+            <div class="feedback-partial"
+                 ng-if="question.feedback.partial != undefined && question.someRight && !question.someWrong">
+                <div ng-if="question.feedback.partial.someRight != undefined">
+                    <md-button ng-if="question.feedbackClass==='button'" class="md-primary"
+                               ng-click="main.showFeedback(question.feedback.partial.someRight)">
+                        {{main.quizConfig.labels.showFeedback}}
+                    </md-button>
+                    <div layout="row" layout-align="center center">
+                        <p ng-if="question.feedbackClass==='text'" class="p-feedback">
+                            {{question.feedback.partial.someRight}}</p></div>
+                </div>
+            </div>
+
+            <div class="feedback-basic"
+                 ng-if="question.feedback.basic != undefined">
+                <md-button ng-if="question.feedbackClass==='button'" class="md-primary"
+                           ng-click="main.showFeedback(question.feedback.basic)">
+                    {{main.quizConfig.labels.showFeedback}}
+                </md-button>
+                <div layout="row" layout-align="center center">
+                    <p ng-if="question.feedbackClass==='text'" class="p-feedback">{{question.feedback.basic}}</p></div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+

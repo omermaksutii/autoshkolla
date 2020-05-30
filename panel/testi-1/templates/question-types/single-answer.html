@@ -1,0 +1,74 @@
+<!-- buttons -->
+<div layout="row" layout-wrap  class="layout-answers"
+     ng-class="{'halfWidth': ctrl.quizMain.questionsData[ctrl.questionId].halfWidth}"
+     ng-if="ctrl.quizMain.questionsData[ctrl.questionId].choicesType==='button'">
+
+    <div ng-repeat="choiceID in ctrl.quizMain.questionsData[ctrl.questionId].choicesID"
+         flex="{{ctrl.quizMain.questionsData[ctrl.questionId].itemsWidth}}"
+         flex-sm="{{ctrl.quizMain.questionsData[ctrl.questionId].mobileWidth}}"
+         ng-class="{'item-separation': ctrl.quizMain.questionsData[ctrl.questionId].itemSeparation}">
+
+        <md-button ng-click="ctrl.setAnswers(choiceID)"
+                   ng-class="['md-raised',
+                             {'md-primary': choiceID == ctrl.quizMain.questionsData[ctrl.questionId].answer,
+                              'textLeft': ctrl.quizMain.questionsData[ctrl.questionId].textLeft,
+                              'no-border': ctrl.quizMain.questionsData[ctrl.questionId].noBorder,
+                              'semitransparent': ctrl.quizMain.questionsData[ctrl.questionId].semitransparent}]"
+                aria-label="{{ctrl.quizMain.questionsData[ctrl.questionId].choices[choiceID]}}">
+           <!--<span ng-if="!ctrl.quizMain.questionsData[ctrl.questionId].images" ng-bind-html="ctrl.quizMain.questionsData[ctrl.questionId].trustedChoicesID[choiceID]">--></span>
+            <span ng-if="!ctrl.quizMain.questionsData[ctrl.questionId].images" ng-bind-html="ctrl.quizMain.questionsData[ctrl.questionId].choices[choiceID]"></span>
+            <img ng-if="ctrl.quizMain.questionsData[ctrl.questionId].images" ng-src="{{ctrl.quizMain.questionsData[ctrl.questionId].choices[choiceID]}}"/>
+        </md-button>
+    </div>
+</div>
+
+<!-- radio  -->
+<div layout="row" layout-wrap class="layout-answers" ng-if="ctrl.quizMain.questionsData[ctrl.questionId].choicesType==='radio'">
+
+    <md-radio-group ng-model="ctrl.quizMain.questionsData[ctrl.questionId].answer"
+                    ng-change="ctrl.change()">
+
+        <md-radio-button ng-repeat="choiceID in ctrl.quizMain.questionsData[ctrl.questionId].choicesID"
+                         aria-label="{{ctrl.quizMain.questionsData[ctrl.questionId].choices[choiceID]}}"
+                         value="{{choiceID}}" class="md-primary">
+            <span ng-if="!ctrl.quizMain.questionsData[ctrl.questionId].images" ng-bind-html="ctrl.quizMain.questionsData[ctrl.questionId].choices[choiceID]"></span>
+            <img ng-if="ctrl.quizMain.questionsData[ctrl.questionId].images" ng-src="{{ctrl.quizMain.questionsData[ctrl.questionId].choices[choiceID]}}"/>
+        </md-radio-button>
+
+        <!-- other radio button -->
+        <md-radio-button ng-if="ctrl.quizMain.questionsData[ctrl.questionId].other"
+                         aria-label="ctrl.quizMain.questionsData[ctrl.questionId].other.text"
+                         value="{{ctrl.quizMain.questionsData[ctrl.questionId].choices.length}}" class="md-primary">
+            <span ng-bind-html="ctrl.quizMain.questionsData[ctrl.questionId].other.text"></span>
+        </md-radio-button>
+    </md-radio-group>
+</div>
+<!-- other input field -->
+<div layout="row">
+<md-input-container md-no-float ng-if="ctrl.quizMain.questionsData[ctrl.questionId].answer === ctrl.quizMain.questionsData[ctrl.questionId].choices.length"
+                    ng-class="['other-single',
+                                {'other-bottom': ctrl.quizMain.questionsData[ctrl.questionId].other.position === 'bottom',
+                              'other-right': ctrl.quizMain.questionsData[ctrl.questionId].other.position === 'right'}]">
+   <input type="text" name="other" ng-model="ctrl.quizMain.questionsData[ctrl.questionId].other.answer" ng-change="ctrl.change()" placeholder="{{ctrl.quizMain.questionsData[ctrl.questionId].other.placeholder}}">
+</md-input-container>
+</div>
+
+
+
+<!-- select  -->
+<div layout="column" class="layout-answers" ng-if="ctrl.quizMain.questionsData[ctrl.questionId].choicesType==='select'"
+     ng-class="{'halfWidth': ctrl.quizMain.questionsData[ctrl.questionId].halfWidth}">
+
+    <md-input-container md-no-float>
+        <md-select ng-model="ctrl.quizMain.questionsData[ctrl.questionId].answer"
+                   ng-change="ctrl.change()"
+                   placeholder="{{ctrl.quizMain.questionsData[ctrl.questionId].placeholder}}">
+            <md-option ng-repeat="choiceID in ctrl.quizMain.questionsData[ctrl.questionId].choicesID"
+                       aria-label="{{ctrl.quizMain.questionsData[ctrl.questionId].choices[choiceID]}}"
+                       value="{{choiceID}}" class="md-primary"
+            <span ng-bind-html="ctrl.quizMain.questionsData[ctrl.questionId].choices[choiceID]"></span>
+            </md-option>
+        </md-select>
+    </md-input-container>
+
+</div>

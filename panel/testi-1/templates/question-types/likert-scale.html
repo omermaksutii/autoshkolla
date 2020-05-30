@@ -1,0 +1,49 @@
+<!-- likert scale top text-->
+<div layout="row" layout-align="space-between center" class="scale-text md-caption"
+     ng-class="{'halfWidth': ctrl.quizMain.questionsData[ctrl.questionId].halfWidth}">
+    <div ng-if="ctrl.quizMain.questionsData[ctrl.questionId].scaleTextLeft"
+         ng-bind-html="ctrl.quizMain.questionsData[ctrl.questionId].scaleTextLeft">
+    </div>
+    <div ng-if="ctrl.quizMain.questionsData[ctrl.questionId].scaleTextCenter"
+         ng-bind-html="ctrl.quizMain.questionsData[ctrl.questionId].scaleTextCenter">
+    </div>
+    <div ng-if="ctrl.quizMain.questionsData[ctrl.questionId].scaleTextRight"
+         ng-bind-html="ctrl.quizMain.questionsData[ctrl.questionId].scaleTextRight">
+    </div>
+</div>
+
+<!-- slider -->
+<div layout class="layout-answers"
+     ng-class="{'halfWidth': ctrl.quizMain.questionsData[ctrl.questionId].halfWidth}"
+     ng-if="ctrl.quizMain.questionsData[ctrl.questionId].scaleType==='slider'">
+    <md-slider flex class="md-primary" ng-attr-md-discrete="{{ctrl.quizMain.questionsData[ctrl.questionId].showNumberSteps}}"
+               ng-model="ctrl.quizMain.questionsData[ctrl.questionId].answer"
+               ng-change="ctrl.change()"
+               step="1"
+               min="{{ctrl.quizMain.questionsData[ctrl.questionId].minValue}}"
+               max="{{ctrl.quizMain.questionsData[ctrl.questionId].maxValue}}"
+               aria-label="scale">
+    </md-slider>
+</div>
+
+<!-- buttons -->
+<div layout="row" layout-wrap class="layout-answers"
+     ng-class="{'halfWidth': ctrl.quizMain.questionsData[ctrl.questionId].halfWidth}"
+     ng-if="ctrl.quizMain.questionsData[ctrl.questionId].scaleType==='button'">
+
+    <div flex ng-repeat="choice in ctrl.quizMain.questionsData[ctrl.questionId].choices"
+         ng-class="{'item-separation': ctrl.quizMain.questionsData[ctrl.questionId].itemSeparation}">
+
+        <md-button ng-click="ctrl.setAnswers(ctrl.quizMain.questionsData[ctrl.questionId],this.$index)"
+                   ng-class="['md-raised',
+                             {'md-primary': $index == ctrl.quizMain.questionsData[ctrl.questionId].answer,
+                              'textLeft': ctrl.quizMain.questionsData[ctrl.questionId].textLeft,
+                              'no-border': ctrl.quizMain.questionsData[ctrl.questionId].noBorder,
+                              'semitransparent': ctrl.quizMain.questionsData[ctrl.questionId].semitransparent}]"
+                   aria-label="{{choice}}">
+            <span ng-if="!ctrl.quizMain.questionsData[ctrl.questionId].images">{{choice}}</span>
+            <img ng-if="ctrl.quizMain.questionsData[ctrl.questionId].images" ng-src="{{choice}}"/>
+        </md-button>
+    </div>
+
+</div>

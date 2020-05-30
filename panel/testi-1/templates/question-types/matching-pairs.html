@@ -1,0 +1,72 @@
+<!-- select -->
+<div class="layout-answers" ng-if="ctrl.quizMain.questionsData[ctrl.questionId].choicesType==='select'"
+     ng-class="{'halfWidth': ctrl.quizMain.questionsData[ctrl.questionId].halfWidth}">
+
+    <div ng-repeat="choiceRightID in ctrl.quizMain.questionsData[ctrl.questionId].choicesRightID" layout="row">
+
+        <div flex class="type-select matching-fixed"><span ng-bind-html="ctrl.quizMain.questionsData[ctrl.questionId].choicesLeft[this.$index]"></span></div>
+
+        <md-select flex ng-model="ctrl.quizMain.questionsData[ctrl.questionId].selectModel[this.$index]"
+                   ng-change="ctrl.setSelectAnswer(choiceRightID)"
+                   class="type-select matching-choices"
+                   aria-label="{{ctrl.quizMain.questionsData[ctrl.questionId].choicesRight[choiceRightID]}}"
+                   placeholder="{{ctrl.quizMain.questionsData[ctrl.questionId].placeholder}}">
+
+            <md-option ng-repeat="choiceRightID in ctrl.quizMain.questionsData[ctrl.questionId].choicesRightID"
+                       value="{{choiceRightID}}">
+                <span ng-bind-html="ctrl.quizMain.questionsData[ctrl.questionId].choicesRight[choiceRightID]"></span>
+            </md-option>
+
+        </md-select>
+
+    </div>
+
+</div>
+
+
+<!-- buttons -->
+
+<div layout="row" layout-wrap class="layout-answers"
+     ng-class="{'halfWidth': ctrl.quizMain.questionsData[ctrl.questionId].halfWidth}"
+     ng-if="ctrl.quizMain.questionsData[ctrl.questionId].choicesType==='button'">
+
+    <!-- Left options -->
+    <ul flex>
+        <li ng-repeat="choice in ctrl.quizMain.questionsData[ctrl.questionId].choicesLeft"
+            ng-class="{'item-separation': ctrl.quizMain.questionsData[ctrl.questionId].itemSeparation}">
+            <md-button ng-click="ctrl.setMatchingLeft(this.$index)"
+                       ng-style="{'border-color': ctrl.quizMain.questionsData[ctrl.questionId].borderColorsLeft[this.$index]}"
+                       ng-class="['md-raised', 'matching-fixed',
+                             {'md-primary': $index == ctrl.quizMain.questionsData[ctrl.questionId].left,
+                              'textLeft': ctrl.quizMain.questionsData[ctrl.questionId].textLeft,
+                              'no-border': ctrl.quizMain.questionsData[ctrl.questionId].noBorder,
+                              'semitransparent': ctrl.quizMain.questionsData[ctrl.questionId].semitransparent,
+                              'selected': ctrl.quizMain.questionsData[ctrl.questionId].answer[$index] != undefined,
+                              'border-color': ctrl.quizMain.questionsData[ctrl.questionId].borderColor}]"
+                       aria-label="{{choice}}">
+                <span ng-if="!ctrl.quizMain.questionsData[ctrl.questionId].imagesLeft" ng-bind-html="choice"></span>
+                <img ng-if="ctrl.quizMain.questionsData[ctrl.questionId].imagesLeft" ng-src="{{choice}}"/>
+            </md-button>
+        </li>
+    </ul>
+
+    <!-- Right options -->
+    <ul flex>
+        <li ng-repeat="choiceRightID in ctrl.quizMain.questionsData[ctrl.questionId].choicesRightID"
+            ng-class="{'item-separation': ctrl.quizMain.questionsData[ctrl.questionId].itemSeparation}">
+            <md-button ng-click="ctrl.setMatchingRight(choiceRightID)"
+                       ng-style="{'border-color': ctrl.quizMain.questionsData[ctrl.questionId].borderColorsRight[choiceRightID]}"
+                       ng-class="['md-raised', 'matching-fixed',
+                             {'md-primary': choiceRightID == ctrl.quizMain.questionsData[ctrl.questionId].right,
+                              'textLeft': ctrl.quizMain.questionsData[ctrl.questionId].textLeft,
+                              'no-border': ctrl.quizMain.questionsData[ctrl.questionId].noBorder,
+                              'semitransparent': ctrl.quizMain.questionsData[ctrl.questionId].semitransparent,
+                              'selected': ctrl.quizMain.questionsData[ctrl.questionId].answer.indexOf('{{ctrl.quizMain.questionsData[ctrl.questionId].choicesRight[choiceRightID]}}') > -1,
+                              'border-color': ctrl.quizMain.questionsData[ctrl.questionId].borderColor}]"
+                       aria-label="{{choice}}">
+                <span ng-if="!ctrl.quizMain.questionsData[ctrl.questionId].imagesRight" ng-bind-html="ctrl.quizMain.questionsData[ctrl.questionId].choicesRight[choiceRightID]"></span>
+                <img ng-if="ctrl.quizMain.questionsData[ctrl.questionId].imagesRight" ng-src="{{ctrl.quizMain.questionsData[ctrl.questionId].choicesRight[choiceRightID]}}"/>
+            </md-button>
+        </li>
+    </ul>
+</div>

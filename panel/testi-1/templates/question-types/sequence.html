@@ -1,0 +1,25 @@
+<!-- select -->
+<div class="layout-answers" ng-if="ctrl.quizMain.questionsData[ctrl.questionId].choicesType==='select'"
+     ng-class="{'halfWidth': ctrl.quizMain.questionsData[ctrl.questionId].halfWidth}">
+
+    <div ng-repeat="choiceID in ctrl.quizMain.questionsData[ctrl.questionId].choicesID" layout="row">
+
+        <div class="type-select matching-fixed"><span>{{this.$index +1}}</span></div>
+
+        <md-select flex ng-model="ctrl.quizMain.questionsData[ctrl.questionId].selectModel[this.$index]"
+                   ng-change="ctrl.setSelectAnswer(choiceID)"
+                   class="type-select"
+                   aria-label="{{choiceID}}"
+                   placeholder="{{ctrl.quizMain.questionsData[ctrl.questionId].placeholder}}">
+
+            <md-option ng-repeat="choiceID in ctrl.quizMain.questionsData[ctrl.questionId].choicesID"
+                       value="{{choiceID}}">
+                <span ng-if="!ctrl.quizMain.questionsData[ctrl.questionId].images" ng-bind-html="ctrl.quizMain.questionsData[ctrl.questionId].choices[choiceID]"></span>
+                <img ng-if="ctrl.quizMain.questionsData[ctrl.questionId].images" ng-src="{{ctrl.quizMain.questionsData[ctrl.questionId].choices[choiceID]}}"/>
+            </md-option>
+
+        </md-select>
+
+    </div>
+
+</div>

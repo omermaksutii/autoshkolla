@@ -1,0 +1,18 @@
+<div layout="row" layout-wrap  class="layout-answers">
+
+        <md-button ng-repeat="choice in ctrl.quizMain.questionsData[ctrl.questionId].choices" class="rating"
+                   flex-order="{{choice}}"
+                   ng-click="ctrl.setAnswers(ctrl.quizMain.questionsData[ctrl.questionId],this.$index)"
+                   ng-class="['md-icon-button', 'icon',
+                             {'md-primary': $index >= ctrl.quizMain.questionsData[ctrl.questionId].answer}]"
+                   aria-label="{{choice}}">
+
+            <md-icon ng-if="ctrl.quizMain.questionsData[ctrl.questionId].icon === 'star'"
+                     md-svg-icon="css/icons/grade.svg"></md-icon>
+            <md-icon ng-if="ctrl.quizMain.questionsData[ctrl.questionId].icon === 'heart'"
+                     md-svg-icon="css/icons/favorite.svg"></md-icon>
+            <md-icon ng-if="ctrl.quizMain.questionsData[ctrl.questionId].icon === 'thumb-up'"
+                     md-svg-icon="css/icons/thumb_up.svg"></md-icon>
+
+        </md-button>
+</div>

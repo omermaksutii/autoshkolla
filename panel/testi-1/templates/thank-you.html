@@ -1,0 +1,32 @@
+<div ng-class="['quiz-container', {'md-whiteframe-3dp':thanks.quizConfig.settings.whiteframe}]">
+    <!-- Main title, optional div -->
+    <div ng-if="thanks.quizConfig.labels.thanksTitle">
+        <md-toolbar layout-padding ng-if="thanks.quizConfig.settings.titleToolbar" class="title-toolbar">
+            <h1 class="md-display-1 main-title">{{thanks.quizConfig.labels.thanksTitle}}</h1>
+        </md-toolbar>
+        <h1 ng-if="!thanks.quizConfig.settings.titleToolbar"
+            class="md-display-1 main-title without-toolbar">{{thanks.quizConfig.labels.thanksTitle}}</h1>
+    </div>
+
+    <!-- Page description -->
+    <div class="page" ng-if="thanks.quizConfig.labels.thanksDescription"
+         ng-bind-html="thanks.quizConfig.labels.thanksDescription"></div>
+
+    <!-- Write here your custom HTML thanks description -->
+    <!--
+    <div class="page">
+        Your code here
+    </div>
+    -->
+
+    <!-- redo quiz -->
+    <div layout="row" layout-align="center center" class="prev-next nav-buttons">
+        <md-button ng-click="thanks.redo()"
+                   ng-if="thanks.quizConfig.settings.redoButton">
+            {{thanks.quizConfig.labels.redoText}}
+        </md-button>
+    </div>
+</div>
+
+
+

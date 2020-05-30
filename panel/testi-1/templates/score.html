@@ -1,0 +1,291 @@
+<div ng-class="['quiz-container', {'md-whiteframe-3dp':score.quizConfig.settings.whiteframe}]">
+
+    <!-- Main title, optional div -->
+    <div ng-if="score.quizConfig.labels.scoreTitle">
+        <md-toolbar layout-padding ng-if="score.quizConfig.settings.titleToolbar" class="title-toolbar">
+            <h1 class="md-display-1 main-title">{{score.quizConfig.labels.scoreTitle}}</h1>
+        </md-toolbar>
+        <h1 ng-if="!score.quizConfig.settings.titleToolbar"
+            class="md-display-1 main-title without-toolbar">{{score.quizConfig.labels.scoreTitle}}</h1>
+    </div>
+
+    <div class="page" layout-padding>
+
+        <!-- Score description -->
+        <div class="description" ng-if="score.quizConfig.labels.scoreDescription"
+             ng-bind-html="score.quizConfig.labels.scoreDescription"></div>
+
+        <!-- Write here your custom HTML score description -->
+        <!--some examples for dynamic content you can use:
+        {{score.quizScore.scorePointsRounded}} -> show the points scored
+        {{score.quizScore.scorePercentageRounded}} -> show the percentage scored
+        {{score.finalMessagePoints}} -> show the message regarding the points scored (change the text in the labels tab in the builder)
+        {{score.finalMessagePercentage}} -> show the message regarding the percentage scored (change the text in the labels tab in the builder)
+        {{score.finalMessagePersonality}} -> show the message regarding the winning personality -->
+        <!--
+        <div class="description">
+            Your code here
+        </div>
+        -->
+
+        <!-- show custom image -->
+        <div ng-if="score.quizConfig.score.showCustomImage">
+            <img ng-src="{{score.finalImage}}" >
+        </div>
+
+        <!-- Message -->
+        <md-toolbar class="score-message"
+                    ng-if="score.quizConfig.score.showMessage"
+                    ng-style="{'color': score.quizConfig.score.scoreMessageTextColor}">
+
+            <!-- Points scored -->
+            <p ng-if="score.quizConfig.score.showPoints">
+                {{score.quizConfig.labels.pointsScored}} {{score.quizScore.scorePointsRounded}}
+                <span ng-if="score.quizConfig.score.showMaxPoints">/ {{score.quizScore.maxPoints}}</span></p>
+                
+
+            <!-- Message about points scored -->
+            <p ng-if="score.finalMessagePoints.length>0 && score.quizConfig.score.showPointsMessage"
+               ng-bind-html="score.finalMessagePoints"></p>
+               
+
+            <!-- Percentage scored -->
+            <p ng-if="score.quizConfig.score.showPercentage">
+                {{score.quizConfig.labels.percentageScored}} {{score.quizScore.scorePercentageRounded}}%
+            </p>
+            
+
+            <!-- Message about percentage scored -->
+            <p ng-if="score.finalMessagePercentage.length>0 && score.quizConfig.score.showPercentageMessage"
+               ng-bind-html="score.finalMessagePercentage"></p>
+               <md-button onclick="window.location.href = '../quizze.php'">Ktheu tek faqja Kryesore</md-button>
+
+            <!-- Summary: total right, total wrong and total blank -->
+            <p ng-if="score.quizConfig.score.showSummary">
+                {{score.quizConfig.labels.correct}} {{score.quizScore.totalRight}} |
+                {{score.quizConfig.labels.incorrect}} {{score.quizScore.totalWrong}} |
+                {{score.quizConfig.labels.leftBlank}} {{score.quizScore.totalBlank}}
+            </p>
+
+            <!-- Message about winner personality -->
+            <p ng-if="score.finalMessagePersonality.length>0 && score.quizConfig.score.showPersonalityMessage"
+               ng-bind-html="score.finalMessagePersonality"></p>
+
+
+        </md-toolbar>
+
+        <!-- Example: div with your custom HTML regarding the points scored -->
+        <!--
+        <div ng-if="score.quizScore.scorePointsRounded > 10 && score.quizScore.scorePointsRounded < 50">
+            <p>Your custom html can be here. In this example this div will be showed if the points are
+            greater than 10 but less than 50 points. If you prefer percentage change scorePointsRounded for
+            scorePercentageRounded</p>
+        </div>
+        -->
+
+        <!-- Show quiz (statements, user answers and/or correct answers -->
+        <div ng-if="score.quizConfig.score.showQuiz" layout="column">
+            <div class="score-questions" ng-repeat="item in score.questionsData">
+
+
+                <h3><span ng-if="score.quizConfig.settings.showQuestionNumber">{{item.id +1}}. </span>
+                    <span ng-bind-html="item.statement"></span>
+                </h3>
+
+                <div class="aside-image-score" layout-padding ng-if="item.asideImageScore">
+                    <img ng-click="score.showImage(item.asideImage)" ng-src="{{item.asideImage}}"/>
+                </div>
+
+                <div class="score-answers" ng-if="item.type != 'matrix'">
+                    <!-- blank -->
+                    <div ng-if="score.quizConfig.score.showUserAnswers && item.answerState === 'blank'">
+                        <p ng-if="score.quizConfig.labels.answerPrevText" class="md-caption">
+                            {{score.quizConfig.labels.answerPrevText}}</p>
+                        <div ng-if="score.quizConfig.score.showUserAnswers" class="unanswered">
+                            {{score.quizConfig.labels.unansweredQuestion}}
+                        </div>
+                    </div>
+
+                    <!-- answer -->
+                    <div ng-if="score.quizConfig.score.showUserAnswers && item.answerState != 'blank'">
+                        <p ng-if="score.quizConfig.labels.answerPrevText" md-caption class="md-caption">
+                            {{score.quizConfig.labels.answerPrevText}}</p>
+                        <div ng-bind-html="item.scoreBoardAnswer"></div>
+                    </div>
+
+                    <!-- solution -->
+                    <div ng-if="score.checkShowSolution(item.answerState, item.scoreBoardSolution) ||
+                                ((item.feedbackScore.wrong || item.feedbackScoreWrong) && item.answerState != 'right') ||
+                                ((item.feedbackScore.right || item.feedbackScoreRight) && item.answerState === 'right') ||
+                                item.feedbackScoreAlways || item.feedbackScore.basic">
+
+                        <p ng-if="score.quizConfig.labels.solutionPrevText" md-caption class="md-caption">
+                            {{score.quizConfig.labels.solutionPrevText}}</p>
+
+                        <!-- if there is not custom feedback for the score it shows the right answer -->
+                        <div ng-if="!item.feedbackScoreWrong && !item.feedbackScoreRight && !item.feedbackScoreAlways && !item.feedbackScore.wrong && !item.feedbackScore.right && !item.feedbackScore.basic"
+                             ng-bind-html="item.scoreBoardSolution"></div>
+
+                        <!-- custom feedback for the score if any -->
+                        <div ng-if="item.feedbackScore.wrong && item.answerState != 'right'" ng-bind-html="item.feedbackScore.wrong"></div>
+                        <div ng-if="item.feedbackScore.right && item.answerState === 'right'" ng-bind-html="item.feedbackScore.right"></div>
+                        <div ng-if="item.feedbackScore.basic" ng-bind-html="item.feedbackScore.basic"></div>
+                        <!-- old feedback version (deprecated) -->
+                        <div ng-if="item.feedbackScoreWrong && item.answerState != 'right'" ng-bind-html="item.feedbackScoreWrong"></div>
+                        <div ng-if="item.feedbackScoreRight && item.answerState === 'right'" ng-bind-html="item.feedbackScoreRight"></div>
+                        <div ng-if="item.feedbackScoreAlways" ng-bind-html="item.feedbackScoreAlways"></div>
+
+
+
+                    </div>
+                </div>
+
+                <!-- for matrix -->
+                <div ng-if="item.type === 'matrix'" ng-repeat="rowID in item.rowsID">
+                    <p><span ng-if="score.quizConfig.settings.showQuestionNumber">{{this.$index +1}}. </span>
+                        <span ng-bind-html="item.rows[rowID]"></span>
+                    </p>
+                    <div class="score-answers">
+                        <!-- blank -->
+                        <div ng-if="score.quizConfig.score.showUserAnswers && item.answerState[rowID] === 'blank'">
+                            <p ng-if="score.quizConfig.labels.answerPrevText" class="md-caption">
+                                {{score.quizConfig.labels.answerPrevText}}</p>
+                            <div ng-if="score.quizConfig.score.showUserAnswers" class="unanswered">
+                                {{score.quizConfig.labels.unansweredQuestion}}
+                            </div>
+                        </div>
+
+                        <!-- answer -->
+                        <div ng-if="score.quizConfig.score.showUserAnswers && item.answerState[rowID] != 'blank'">
+                            <p ng-if="score.quizConfig.labels.answerPrevText" md-caption class="md-caption">
+                                {{score.quizConfig.labels.answerPrevText}}</p>
+                            <div ng-bind-html="item.scoreBoardAnswer[rowID]"></div>
+                        </div>
+
+
+                        <!-- solution -->
+                        <div ng-if="((score.quizConfig.score.showSolution || item.feedbackScoreWrong) && item.answerState[rowID] != 'right') || item.feedbackScoreAlways">
+                            <p ng-if="score.quizConfig.labels.solutionPrevText" md-caption class="md-caption">
+                                {{score.quizConfig.labels.solutionPrevText}}</p>
+                            <div ng-if="!item.feedbackScoreWrong && !item.feedbackScoreAlways"
+                                 ng-bind-html="item.choices[item.solution[rowID]]"></div>
+                            <div ng-if="item.feedbackScoreWrong" ng-bind-html="item.feedbackScoreWrong[rowID]"></div>
+                            <div ng-if="item.feedbackScoreAlways" ng-bind-html="item.feedbackScoreAlways[rowID]"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Optional separator -->
+                <md-divider ng-if="!$last"></md-divider>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Social Buttons -->
+
+    <div ng-if="score.quizConfig.score.share" layout="column" layout-align="center center" class="qq_social_icons">
+        <h2 ng-bind-html="score.quizConfig.score.share.title"></h2>
+        <div layout="row" layout-align="center center">
+
+            <!-- customize your TWITTER text (&text=...), some examples for dynamic content you can use:
+            {{score.quizScore.scorePointsRounded}} -> show the points scored
+            {{score.quizScore.scorePercentageRounded}} -> show the percentage scored
+            {{score.finalMessagePoints}} -> show the message regarding the points scored (change the text in the labels tab in the builder)
+            {{score.finalMessagePercentage}} -> show the message regarding the percentage scored (change the text in the labels tab in the builder)
+            {{score.finalMessagePersonality}} -> show the message regarding the winning personality (change the text in the labels tab in the builder)
+            -->
+
+            <!-- Twitter -->
+            <a ng-if="score.quizConfig.score.share.twitter" target="_blank"
+               ng-href="http://twitter.com/share?url={{score.shareURL}}&text=I am a {{score.finalMessagePersonality}} What animal are you?">
+                <img src="css/icons/twitter.png">
+            </a>
+
+            <!-- Google Plus -->
+            <a ng-if="score.quizConfig.score.share.gplus"
+               ng-href="https://plus.google.com/share?url={{score.shareURL}}" target="_blank">
+                <img src="css/icons/gplus.png">
+            </a>
+
+            <!-- Facebook -->
+            <a ng-if="score.quizConfig.score.share.facebook"
+               href="http://www.facebook.com/sharer/sharer.php?u={{score.shareURL}}" target="_blank">
+                <img src="css/icons/facebook.png">
+            </a>
+
+            <!-- LinkedIn -->
+            <a ng-if="score.quizConfig.score.share.linkedin"
+               href="https://www.linkedin.com/shareArticle?mini=true&url={{score.shareURL}}" target="_blank">
+                <img src="css/icons/linkedin.png">
+            </a>
+
+        </div>
+    </div>
+
+    <!-- redo quiz -->
+    <div layout="row" layout-align="center center" class="prev-next nav-buttons">
+        <md-button ng-click="score.redo()"
+                   ng-if="score.quizConfig.settings.redoButton">
+            {{score.quizConfig.labels.redoText}}
+        </md-button>
+    </div>
+
+</div>
+
+<!-- Send answers to a database -->
+
+<!-- Button only -->
+<div layout="row" layout-align="center center" class="nav-buttons"
+     ng-if="score.quizConfig.database.sendFrom === 'score' && score.quizConfig.database.showForm != 'score' ">
+    <md-button ng-click="score.quizDatabase.onSubmit()">{{score.quizConfig.labels.submitButton}}</md-button>
+</div>
+
+<!-- Form -->
+<div ng-if="score.quizConfig.database.sendFrom === 'score' && score.quizConfig.database.showForm === 'score'"
+     class="quiz-container md-whiteframe-3dp form-container">
+
+    <md-toolbar layout-padding class="title-toolbar">
+        <h1 class="md-headline">{{score.quizConfig.labels.sendTitle}}</h1>
+    </md-toolbar>
+
+    <div class="page" layout-padding>
+        <form name="formData" ng-submit="formData.$valid && score.quizDatabase.onSubmit()" novalidate>
+            <div layout="row">
+                <md-input-container flex ng-if="score.quizConfig.database.name">
+                    <label>{{score.quizConfig.labels.sendName}}</label>
+                    <input name="username" ng-model="score.quizDatabase.formName" required
+                           ng-focus="formData.$submitted=false">
+
+                    <div ng-messages="formData.username.$error" ng-if="formData.$submitted">
+                        <div ng-message="required">{{score.quizConfig.labels.requiredField}}</div>
+                    </div>
+                </md-input-container>
+
+                <md-input-container flex ng-if="score.quizConfig.database.email">
+                    <label>{{score.quizConfig.labels.sendEmail}}</label>
+                    <input name="email" ng-model="score.quizDatabase.formEmail" type="email" required
+                           ng-focus="formData.$submitted=false">
+
+                    <div ng-messages="formData.email.$error" ng-if="formData.$submitted">
+                        <div ng-message="required">{{score.quizConfig.labels.requiredField}}</div>
+                        <div ng-message="email">{{score.quizConfig.labels.emailError}}</div>
+                    </div>
+                </md-input-container>
+            </div>
+            <div layout="row" layout-align="center center" class="nav-buttons">
+                <md-button type="submit">{{score.quizConfig.labels.submitButton}}</md-button>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+
+<div class="loading-icon" layout="row" layout-align="center center"
+     ng-if="score.quizDatabase.sendingData">
+    <div class="spinner"></div>
+</div>
+
+
+
