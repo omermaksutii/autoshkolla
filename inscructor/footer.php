@@ -32,5 +32,13 @@
         <!-- App js -->
         <script src="assets/js/app.js"></script>
 
+		<!-- JQUERY STEP -->
+		<script src="js/jquery.steps.js"></script>
+
+        <script src="js/main.js"></script>
+        <!-- Sweet-Alert  -->
+        <script src="../plugins/sweet-alert2/sweetalert2.min.js"></script>
+        <script src="assets/pages/sweet-alert.init.js"></script>
+
     </body>
 </html>

@@ -150,8 +150,8 @@
         //Ajax
         $('#ajax-alert').click(function () {
             swal({
-                title: 'Submit email to run ajax request',
-                input: 'email',
+                title: 'Enter Notification Message',
+                input: 'text',
                 showCancelButton: true,
                 confirmButtonText: 'Submit',
                 showLoaderOnConfirm: true,
@@ -172,8 +172,8 @@
             }).then(function (email) {
                 swal({
                     type: 'success',
-                    title: 'Ajax request finished!',
-                    html: 'Submitted email: ' + email
+                    title: 'Notification Sent!',
+                    html: 'Message: ' + email
                 })
             })
         });

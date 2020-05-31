@@ -15,13 +15,18 @@
         <link rel="shortcut icon" href="assets/images/favicon.ico">
 
         <!--Morris Chart CSS -->
-        <link rel="stylesheet" href="../../plugins/morris/morris.css">
+        <link rel="stylesheet" href="../plugins/morris/morris.css">
+        <link href="../plugins/sweet-alert2/sweetalert2.min.css" rel="stylesheet" type="text/css">
+
 
         <!-- Basic Css files -->
         <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
         <link href="assets/css/metismenu.min.css" rel="stylesheet" type="text/css">
         <link href="assets/css/icons.css" rel="stylesheet" type="text/css">
         <link href="assets/css/style.css" rel="stylesheet" type="text/css">
+        <link href="assets/css/form-w.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="fonts/material-design-iconic-font/css/material-design-iconic-font.css">
+
 
     </head>
 
@@ -117,7 +122,6 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated profile-dropdown">
                                 <a class="dropdown-item" href="profile.php"><i class="dripicons-user text-muted"></i> Profile</a>
-                                <a class="dropdown-item" href="top10.php"><i class="dripicons-wallet text-muted"></i> LeaderBoard</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="logout.php"><i class="dripicons-exit text-muted"></i> Logout</a>
                             </div>
@@ -149,20 +153,18 @@
                             <li class="menu-title">Main</li>
                             <li>
                                 <a href="index.php" class="waves-effect">
-                                    <i class="dripicons-meter"></i><span class="badge badge-info badge-pill float-right">2</span> <span> Dashboard </span>
+                                    <i class="dripicons-meter"></i><span class="badge badge-info badge-pill float-right"></span> <span> Dashboard </span>
                                 </a>
                             </li>
                             <li>
-                                <a href="javascript:void(0);" class="waves-effect"><i class="fa-check-circle-o"></i><span> Quizzes <span class="float-right menu-arrow"><i class="mdi mdi-chevron-right"></i></span> </span></a>
+                                <a href="javascript:void(0);" class="waves-effect"><i class="fa-check-circle-o"></i><span> Users <span class="float-right menu-arrow"><i class="mdi mdi-chevron-right"></i></span> </span></a>
                                 <ul class="submenu">
-                                    <li><a href="quizze.php">Enter Quizze</a></li>
-                                    <li><a href="quizze-history.php">Quizze History</a></li>
+                                    <li><a href="users.php">Users List</a></li>
+                                    <li><a href="user.php">Add New</a></li>
                                 </ul>
                             </li>
 
-                            <li>
-                                <a href="top10.php" class="waves-effect"><i class="ti-medall"></i><span> TOP10 </span></a>
-                            </li>
+                            
                              <li>
                                 <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-pencil"></i><span> Support <span class="float-right menu-arrow"><i class="mdi mdi-chevron-right"></i></span> </span></a>
                                 <ul class="submenu">
