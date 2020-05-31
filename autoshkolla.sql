@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 30, 2020 at 11:55 PM
+-- Generation Time: May 31, 2020 at 03:08 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.28
 
@@ -25,6 +25,29 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `inscnews`
+--
+
+CREATE TABLE `inscnews` (
+  `id` int(11) NOT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `content` varchar(255) NOT NULL,
+  `date` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `inscnews`
+--
+
+INSERT INTO `inscnews` (`id`, `title`, `content`, `date`) VALUES
+(1, 'test', 'Bugs Fixed', '2020-05-31 12:29:43'),
+(2, 'test', 'Notification to send users has ben addeded', '2020-05-31 12:30:19'),
+(3, 'test', 'Privatcy Updated', '2020-05-31 12:25:19'),
+(4, 'test', 'New Quizze Addeded', '2020-05-31 12:30:19');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `news`
 --
 
@@ -40,10 +63,10 @@ CREATE TABLE `news` (
 --
 
 INSERT INTO `news` (`id`, `title`, `content`, `date`) VALUES
-(1, 'Test', 'test tes test', '2020-05-29 14:32:10'),
-(2, 'Test', 'test tes test', '2020-05-29 14:32:10'),
-(3, 'Test', 'test tes test', '2020-05-29 14:32:10'),
-(4, 'Test', 'test tes test', '2020-05-29 14:32:10');
+(1, 'Test', 'New Quizze Addeded', '2020-05-29 14:32:10'),
+(2, 'Test', 'Bugs Fixed', '2020-05-29 14:32:10'),
+(3, 'Test', '3 Question Types', '2020-05-29 14:32:10'),
+(4, 'Test', 'Profile Progress Updated', '2020-05-29 14:32:10');
 
 -- --------------------------------------------------------
 
@@ -95,6 +118,12 @@ INSERT INTO `users` (`id`, `name`, `username`, `password`) VALUES
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `inscnews`
+--
+ALTER TABLE `inscnews`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `news`
